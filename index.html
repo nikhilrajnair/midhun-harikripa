@@ -8,19 +8,19 @@
 
   <!-- Open Graph / Facebook -->
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://harikripa-midhunraj.wedding">
+  <meta property="og:url" content="https://nikhilrajnair.github.io/midhun-harikripa/">
   <meta property="og:title" content="Hari Kripa weds Midhun Raj | Wedding Invitation">
   <meta property="og:description" content="You are cordially invited to the wedding of Hari Kripa & Midhun Raj on Monday, April 20, 2026, at Kundamkuzhi Temple.">
-  <meta property="og:image" content="https://harikripa-midhunraj.wedding/photo/IMG_3645.JPG">
+  <meta property="og:image" content="https://nikhilrajnair.github.io/midhun-harikripa/photo/IMG_3645.JPG">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
 
   <!-- Twitter -->
   <meta property="twitter:card" content="summary_large_image">
-  <meta property="twitter:url" content="https://harikripa-midhunraj.wedding">
+  <meta property="twitter:url" content="https://nikhilrajnair.github.io/midhun-harikripa/">
   <meta property="twitter:title" content="Hari Kripa weds Midhun Raj | Wedding Invitation">
   <meta property="twitter:description" content="You are cordially invited to the wedding of Hari Kripa & Midhun Raj on Monday, April 20, 2026, at Kundamkuzhi Temple.">
-  <meta property="twitter:image" content="https://harikripa-midhunraj.wedding/photo/IMG_3645.JPG">
+  <meta property="twitter:image" content="https://nikhilrajnair.github.io/midhun-harikripa/photo/IMG_3645.JPG">
 
   <!-- Favicon -->
   <link rel="icon" type="image/jpeg" href="photo/IMG_3645.JPG">
@@ -37,64 +37,80 @@
 <body class="font-body">
 
   <!-- ── BACKGROUND MUSIC ── -->
-  <audio id="bg-music" loop preload="auto" autoplay playsinline>
+  <audio id="bg-music" autoplay loop preload="auto" playsinline>
     <source src="music.mp3" type="audio/mpeg">
   </audio>
 
-  <!-- Immediate autoplay trigger -->
-  <script>
-    try {
-      const music = document.getElementById('bg-music');
-      if (music) {
-        music.volume = 0.35;
-        music.play().catch(() => {
-          // If unmuted autoplay blocked, fallback to muted
-          music.muted = true;
-          music.play().catch(() => {});
-        });
-      }
-    } catch (e) {
-      // Silently ignore if autoplay fails, scripts.js will handle it
-    }
-  </script>
+  <!-- ── FLOATING MUSIC CONTROLS ── -->
+  <div id="music-controls" style="
+    position:fixed; bottom:28px; right:28px; z-index:9999;
+    display:flex; flex-direction:column; align-items:center; gap:0;
+  ">
+    <!-- Volume slider (appears on hover / tap) -->
+    <div id="volume-panel" style="
+      opacity:0; pointer-events:none; transform:translateY(8px);
+      transition:opacity .25s, transform .25s;
+      margin-bottom:10px;
+      background:rgba(255,248,240,.95); backdrop-filter:blur(12px);
+      border-radius:27px; padding:12px 8px;
+      box-shadow:0 4px 20px rgba(201,168,76,.25);
+      display:flex; flex-direction:column; align-items:center; gap:6px;
+    ">
+      <!-- Speaker icon -->
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="#C9A84C">
+        <path d="M3 9v6h4l5 5V4L7 9H3z"/>
+        <path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02z" fill="#C9A84C"/>
+      </svg>
+      <!-- Vertical range slider -->
+      <input id="volume-slider" type="range" min="0" max="100" value="35"
+             oninput="setVolume(this.value)"
+             style="
+               writing-mode:vertical-lr; direction:rtl;
+               width:28px; height:100px;
+               accent-color:#C9A84C; cursor:pointer;
+             " />
+      <span id="vol-label" style="
+        font-family:'Cormorant Garamond',serif; font-size:10px; color:#A8866A;
+      ">35%</span>
+    </div>
 
-  <!-- ── FLOATING MUSIC BUTTON ── -->
-  <div id="music-btn" title="Play / Pause music"
-       onclick="toggleMusic()"
-       style="
-         position:fixed; bottom:28px; right:28px; z-index:9999;
-         width:54px; height:54px; border-radius:50%; cursor:pointer;
-         background:linear-gradient(135deg,#C9A84C,#F0D060,#C9A84C);
-         background-size:200% auto;
-         box-shadow:0 4px 20px rgba(201,168,76,.45);
-         display:flex; align-items:center; justify-content:center;
-         transition:transform .2s, box-shadow .2s;
-       "
-       onmouseenter="this.style.transform='scale(1.1)';this.style.boxShadow='0 6px 28px rgba(201,168,76,.6)'"
-       onmouseleave="this.style.transform='scale(1)';this.style.boxShadow='0 4px 20px rgba(201,168,76,.45)'">
-    <!-- Pulse ring (visible when playing) -->
-    <div id="music-pulse"
+    <!-- Play/Pause button -->
+    <div id="music-btn" title="Play / Pause music"
+         onclick="toggleMusic()"
          style="
-           position:absolute; inset:-6px; border-radius:50%;
-           border:2px solid rgba(201,168,76,.5);
-           opacity:0; animation:none;
-         "></div>
-    <!-- Play icon -->
-    <svg id="icon-play" width="22" height="22" viewBox="0 0 24 24" fill="white">
-      <path d="M8 5.14v14l11-7-11-7z"/>
-    </svg>
-    <!-- Pause icon (hidden by default) -->
-    <svg id="icon-pause" width="22" height="22" viewBox="0 0 24 24" fill="white" style="display:none">
-      <rect x="6" y="4" width="4" height="16" rx="1"/>
-      <rect x="14" y="4" width="4" height="16" rx="1"/>
-    </svg>
-    <!-- Music note label -->
-    <span style="
-      position:absolute; top:-22px; left:50%; transform:translateX(-50%);
-      font-family:'Cormorant Garamond',serif; font-style:italic;
-      font-size:10px; color:#C9A84C; white-space:nowrap;
-      opacity:0; transition:opacity .3s; pointer-events:none;
-    " id="music-label">Kerala Sangeetham</span>
+           width:54px; height:54px; border-radius:50%; cursor:pointer;
+           background:linear-gradient(135deg,#C9A84C,#F0D060,#C9A84C);
+           background-size:200% auto;
+           box-shadow:0 4px 20px rgba(201,168,76,.45);
+           display:flex; align-items:center; justify-content:center;
+           transition:transform .2s, box-shadow .2s;
+           position:relative;
+         "
+         onmouseenter="this.style.transform='scale(1.1)';this.style.boxShadow='0 6px 28px rgba(201,168,76,.6)'"
+         onmouseleave="this.style.transform='scale(1)';this.style.boxShadow='0 4px 20px rgba(201,168,76,.45)'">
+      <!-- Pulse ring -->
+      <div id="music-pulse" style="
+        position:absolute; inset:-6px; border-radius:50%;
+        border:2px solid rgba(201,168,76,.5);
+        opacity:0; animation:none;
+      "></div>
+      <!-- Play icon -->
+      <svg id="icon-play" width="22" height="22" viewBox="0 0 24 24" fill="white">
+        <path d="M8 5.14v14l11-7-11-7z"/>
+      </svg>
+      <!-- Pause icon -->
+      <svg id="icon-pause" width="22" height="22" viewBox="0 0 24 24" fill="white" style="display:none">
+        <rect x="6" y="4" width="4" height="16" rx="1"/>
+        <rect x="14" y="4" width="4" height="16" rx="1"/>
+      </svg>
+      <!-- Label -->
+      <span style="
+        position:absolute; top:-22px; left:50%; transform:translateX(-50%);
+        font-family:'Cormorant Garamond',serif; font-style:italic;
+        font-size:10px; color:#C9A84C; white-space:nowrap;
+        opacity:0; transition:opacity .3s; pointer-events:none;
+      " id="music-label">Kerala Sangeetham</span>
+    </div>
   </div>
 
   <!-- ── LIGHTBOX ── -->

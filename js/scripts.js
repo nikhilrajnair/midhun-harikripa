@@ -192,6 +192,7 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
   });
 });
 
+
 // ── BACKGROUND MUSIC ────────────────────────────────────────────
 const music    = document.getElementById('bg-music');
 const btnEl    = document.getElementById('music-btn');
@@ -199,12 +200,6 @@ const pulse    = document.getElementById('music-pulse');
 const iconPlay = document.getElementById('icon-play');
 const iconPause= document.getElementById('icon-pause');
 let   playing  = false;
-
-// Sync button state with actual playback
-function syncPlayingState() {
-  playing = !music.paused;
-  setPlaying(playing);
-}
 
 function setPlaying(state) {
   playing = state;
@@ -219,23 +214,56 @@ function toggleMusic() {
     music.pause();
     setPlaying(false);
   } else {
-    music.muted = false;
     music.play().then(() => setPlaying(true)).catch(() => {});
   }
 }
 
-// Unmute on first interaction if audio started muted
-function handleFirstInteraction() {
-  if (playing && music.muted) {
-    music.muted = false;
-  }
+// ── VOLUME CONTROL ──────────────────────────────────────────────
+const volPanel  = document.getElementById('volume-panel');
+const volSlider = document.getElementById('volume-slider');
+const volLabel  = document.getElementById('vol-label');
+const controls  = document.getElementById('music-controls');
+let   volTimeout;
+
+function setVolume(v) {
+  const val = parseInt(v, 10);
+  music.volume = val / 100;
+  volLabel.textContent = val + '%';
 }
-document.addEventListener('click', handleFirstInteraction, { once:true });
-document.addEventListener('touchstart', handleFirstInteraction, { once:true, passive:true });
 
-// Sync button state when audio actually starts/stops
-music.addEventListener('play', () => syncPlayingState());
-music.addEventListener('pause', () => syncPlayingState());
+function showVolume() {
+  clearTimeout(volTimeout);
+  volPanel.style.opacity = '1';
+  volPanel.style.pointerEvents = 'auto';
+  volPanel.style.transform = 'translateY(0)';
+}
+function hideVolume() {
+  volTimeout = setTimeout(() => {
+    volPanel.style.opacity = '0';
+    volPanel.style.pointerEvents = 'none';
+    volPanel.style.transform = 'translateY(8px)';
+  }, 400);
+}
 
-// Initial state sync
-syncPlayingState();
+controls.addEventListener('mouseenter', showVolume);
+controls.addEventListener('mouseleave', hideVolume);
+// Long-press on mobile to show volume
+let lpTimer;
+controls.addEventListener('touchstart', () => { lpTimer = setTimeout(showVolume, 400); }, { passive:true });
+controls.addEventListener('touchend', () => { clearTimeout(lpTimer); hideVolume(); }, { passive:true });
+volPanel.addEventListener('touchstart', (e) => { e.stopPropagation(); clearTimeout(volTimeout); showVolume(); }, { passive:true });
+
+// Try auto-playing immediately (works for file:// and localhost)
+music.volume = 0.35;
+music.play().then(() => setPlaying(true)).catch(() => {
+  // Browser blocked autoplay — start on first user interaction instead
+  function startOnInteraction() {
+    music.play().then(() => setPlaying(true)).catch(() => {});
+    document.removeEventListener('click',      startOnInteraction);
+    document.removeEventListener('touchstart', startOnInteraction);
+    document.removeEventListener('scroll',     startOnInteraction);
+  }
+  document.addEventListener('click',      startOnInteraction, { once: true });
+  document.addEventListener('touchstart', startOnInteraction, { once: true, passive: true });
+  document.addEventListener('scroll',     startOnInteraction, { once: true, passive: true });
+});

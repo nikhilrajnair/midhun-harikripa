@@ -3,32 +3,30 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="You are cordially invited to the wedding of Priya & Arjun — December 19, 2025, Thrissur, Kerala">
-  <title>Priya weds Arjun | Wedding Invitation</title>
+  <meta name="description" content="You are cordially invited to the wedding of Hari Kripa & Midhun Raj — April 20, 2026, Kundamkuzhi Temple">
+  <title>Hari Kripa weds Midhun Raj | Wedding Invitation</title>
 
-  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,600&family=Cinzel:wght@400;500;600&family=Dancing+Script:wght@600;700&family=Lato:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
 
-  <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
       theme: {
         extend: {
           colors: {
-            cream:   { DEFAULT: '#FFF8F0', dark: '#F5EAD8' },
-            peach:   { light: '#FFE5D0', DEFAULT: '#FFCBA4', dark: '#E8956D' },
-            sage:    { light: '#D4E8D4', DEFAULT: '#8FAF8F', dark: '#5C8060' },
-            gold:    { light: '#EDD98A', DEFAULT: '#C9A84C', dark: '#8B6810' },
-            warmBrown: { DEFAULT: '#3D2B1F', light: '#7D5A4A' },
+            cream:     { DEFAULT:'#FFF8F0', dark:'#F5EAD8' },
+            peach:     { light:'#FFE5D0', DEFAULT:'#FFCBA4', dark:'#E8956D' },
+            sage:      { light:'#D4E8D4', DEFAULT:'#8FAF8F', dark:'#5C8060' },
+            gold:      { light:'#EDD98A', DEFAULT:'#C9A84C', dark:'#8B6810' },
+            warmBrown: { DEFAULT:'#3D2B1F', light:'#7D5A4A' },
           },
           fontFamily: {
-            display: ['Cinzel', 'serif'],
-            heading: ['Cormorant Garamond', 'serif'],
-            script:  ['Dancing Script', 'cursive'],
-            body:    ['Lato', 'sans-serif'],
+            display: ['Cinzel','serif'],
+            heading: ['Cormorant Garamond','serif'],
+            script:  ['Dancing Script','cursive'],
+            body:    ['Lato','sans-serif'],
           },
         }
       }
@@ -36,406 +34,490 @@
   </script>
 
   <style>
-    html { scroll-behavior: smooth; }
-
-    body {
-      background-color: #FFF8F0;
-      color: #3D2B1F;
-      overflow-x: hidden;
-    }
+    html { scroll-behavior:smooth; }
+    body { background:#FFF8F0; color:#3D2B1F; overflow-x:hidden; }
 
     /* ── Scrollbar ── */
-    ::-webkit-scrollbar { width: 5px; }
-    ::-webkit-scrollbar-track { background: #FFF8F0; }
-    ::-webkit-scrollbar-thumb { background: #C9A84C; border-radius: 3px; }
+    ::-webkit-scrollbar { width:5px; }
+    ::-webkit-scrollbar-track { background:#FFF8F0; }
+    ::-webkit-scrollbar-thumb { background:#C9A84C; border-radius:3px; }
 
-    /* ── Gold shimmer text ── */
+    /* ── Gold shimmer ── */
     .gold-shimmer {
-      background: linear-gradient(90deg, #C9A84C 0%, #F0D060 40%, #C9A84C 60%, #F0D060 100%);
-      background-size: 200% auto;
-      -webkit-background-clip: text;
-      background-clip: text;
-      -webkit-text-fill-color: transparent;
-      animation: shimmer 5s linear infinite;
+      background: linear-gradient(90deg,#C9A84C 0%,#F0D060 40%,#C9A84C 60%,#F0D060 100%);
+      background-size:200% auto;
+      -webkit-background-clip:text; background-clip:text;
+      -webkit-text-fill-color:transparent;
+      animation:shimmer 5s linear infinite;
     }
-    @keyframes shimmer {
-      from { background-position: 0% center; }
-      to   { background-position: 200% center; }
-    }
+    @keyframes shimmer { from{background-position:0% center} to{background-position:200% center} }
 
     /* ── Floating petals ── */
     @keyframes float-down {
-      0%   { transform: translateY(-40px) rotate(0deg);   opacity: 0; }
-      5%   { opacity: .85; }
-      90%  { opacity: .6; }
-      100% { transform: translateY(110vh) rotate(540deg); opacity: 0; }
+      0%   { transform:translateY(-40px) rotate(0deg);   opacity:0; }
+      5%   { opacity:.85; }
+      90%  { opacity:.6; }
+      100% { transform:translateY(110vh) rotate(540deg); opacity:0; }
     }
-    .petal {
-      position: fixed;
-      top: 0;
-      pointer-events: none;
-      z-index: 0;
-      animation: float-down linear infinite;
-    }
+    .petal { position:fixed; top:0; pointer-events:none; z-index:0; animation:float-down linear infinite; }
 
     /* ── Scroll reveal ── */
-    .reveal {
-      opacity: 0;
-      transform: translateY(28px);
-      transition: opacity .75s ease, transform .75s ease;
+    .reveal { opacity:0; transform:translateY(28px); transition:opacity .75s ease,transform .75s ease; }
+    .reveal.visible { opacity:1; transform:none; }
+
+    /* ── Nav link ── */
+    .nav-link { position:relative; }
+    .nav-link::after { content:''; position:absolute; bottom:-3px; left:50%; transform:translateX(-50%); width:0; height:1px; background:#C9A84C; transition:width .3s ease; }
+    .nav-link:hover::after { width:100%; }
+
+    /* ── Gold button ── */
+    .btn-gold { background:linear-gradient(135deg,#C9A84C 0%,#D4AF37 50%,#C9A84C 100%); background-size:200% auto; color:#fff; transition:background-position .4s,transform .2s,box-shadow .2s; }
+    .btn-gold:hover { background-position:right center; transform:translateY(-2px); box-shadow:0 8px 24px rgba(201,168,76,.45); }
+
+    /* ══════════════════════════════════════════
+       HERO — SPLIT LAYOUT
+    ══════════════════════════════════════════ */
+    .hero-split {
+      display:grid;
+      grid-template-columns:44% 56%;
+      min-height:100vh;
     }
-    .reveal.visible {
-      opacity: 1;
-      transform: none;
+    @media (max-width:767px) {
+      .hero-split { grid-template-columns:1fr; grid-template-rows:58vh auto; min-height:auto; }
     }
 
-    /* ── Hero background pattern ── */
-    .hero-bg {
-      background-color: #FFF8F0;
-      background-image:
-        radial-gradient(circle at 18% 55%, rgba(255,203,164,.18) 0%, transparent 48%),
-        radial-gradient(circle at 82% 20%, rgba(143,175,143,.15) 0%, transparent 40%),
-        radial-gradient(circle at 55% 85%, rgba(201,168,76,.07) 0%, transparent 38%);
+    /* Photo column */
+    .hero-photo-col { position:relative; overflow:hidden; }
+    .hero-photo-col img {
+      width:100%; height:100%; object-fit:cover;
+      object-position:center 15%;
+      display:block;
+      animation:kenburns 22s ease-in-out infinite alternate;
+    }
+    @keyframes kenburns { from{transform:scale(1)} to{transform:scale(1.07)} }
+
+    /* Right-edge bleed into cream (desktop) */
+    .hero-photo-col::after {
+      content:''; position:absolute; inset:0;
+      background:linear-gradient(to right, transparent 60%, rgba(255,248,240,.2) 82%, rgba(255,248,240,.75) 100%);
+      pointer-events:none;
+    }
+    @media (max-width:767px) {
+      .hero-photo-col::after {
+        background:linear-gradient(to bottom, transparent 55%, rgba(255,248,240,.5) 82%, #FFF8F0 100%);
+      }
+    }
+    /* Gold seam between columns (desktop) */
+    .hero-photo-col::before {
+      content:''; position:absolute; top:0; bottom:0; right:0; width:3px; z-index:2;
+      background:linear-gradient(to bottom, transparent, #C9A84C 20%, #F0D060 50%, #C9A84C 80%, transparent);
+    }
+    @media (max-width:767px) { .hero-photo-col::before { display:none; } }
+
+    /* Kerala lamp on photo column */
+    .lamp-on-photo {
+      position:absolute; bottom:1.8rem; left:50%; transform:translateX(-50%);
+      z-index:3; opacity:.55;
     }
 
-    /* ── Event card ── */
-    .event-card {
-      transition: transform .3s ease, box-shadow .3s ease;
+    /* Content column */
+    .hero-content-col {
+      background:#FFF8F0;
+      display:flex; align-items:center; justify-content:center;
+      padding:5.5rem 3rem 4rem;
+      position:relative;
     }
-    .event-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 18px 40px rgba(201,168,76,.18);
-    }
+    @media (max-width:767px) { .hero-content-col { padding:2.5rem 1.5rem 5rem; } }
 
-    /* ── Nav link underline ── */
-    .nav-link { position: relative; }
-    .nav-link::after {
-      content: '';
-      position: absolute;
-      bottom: -3px; left: 50%;
-      transform: translateX(-50%);
-      width: 0; height: 1px;
-      background: #C9A84C;
-      transition: width .3s ease;
-    }
-    .nav-link:hover::after { width: 100%; }
-
-    /* ── Gold CTA button ── */
-    .btn-gold {
-      background: linear-gradient(135deg, #C9A84C 0%, #D4AF37 50%, #C9A84C 100%);
-      background-size: 200% auto;
-      color: #fff;
-      transition: background-position .4s ease, transform .2s ease, box-shadow .2s ease;
-    }
-    .btn-gold:hover {
-      background-position: right center;
-      transform: translateY(-2px);
-      box-shadow: 0 8px 24px rgba(201,168,76,.45);
-    }
-
-    /* ── Photo placeholder ── */
-    .photo-slot {
-      background: linear-gradient(135deg, #FFE5D0 0%, #D4E8D4 100%);
-      position: relative;
-      overflow: hidden;
-    }
-    .photo-slot::before {
-      content: '';
-      position: absolute; inset: 0;
-      background: repeating-linear-gradient(
-        45deg,
-        transparent, transparent 12px,
-        rgba(255,255,255,.3) 12px, rgba(255,255,255,.3) 24px
-      );
-    }
-
-    /* ── Custom radio choice ── */
-    .choice-pill {
-      border: 1.5px solid rgba(201,168,76,.45);
-      transition: background .25s, color .25s, border-color .25s, transform .2s;
-      cursor: pointer;
-    }
-    .choice-pill.selected-yes  { background:#C9A84C; color:#fff; border-color:#C9A84C; }
-    .choice-pill.selected-no   { background:#8FAF8F; color:#fff; border-color:#8FAF8F; }
-    .choice-pill:hover         { transform: scale(1.02); }
-
-    /* ── Custom checkbox ── */
-    .cb-box {
-      width: 20px; height: 20px;
-      border: 1.5px solid #C9A84C;
-      display: flex; align-items: center; justify-content: center;
-      flex-shrink: 0;
-      transition: background .2s;
-      cursor: pointer;
-    }
-    .cb-box.checked { background: rgba(201,168,76,.15); }
-    .cb-box .cb-tick { opacity: 0; transition: opacity .2s; }
-    .cb-box.checked .cb-tick { opacity: 1; }
-
-    /* ── Form input focus ── */
-    .f-input {
-      background: #FFF8F0;
-      border: 1.5px solid rgba(201,168,76,.35);
-      padding: .75rem 1rem;
-      width: 100%;
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1rem;
-      color: #3D2B1F;
-      transition: border-color .25s, box-shadow .25s;
-      outline: none;
-    }
-    .f-input:focus {
-      border-color: #C9A84C;
-      box-shadow: 0 0 0 3px rgba(201,168,76,.14);
-    }
-
-    /* ── Countdown digits ── */
-    @keyframes pulse-soft {
-      0%, 100% { transform: scale(1); }
-      50%       { transform: scale(1.04); }
-    }
-    .cd-num { animation: pulse-soft 2s ease-in-out infinite; }
-
-    /* ── Story connector line ── */
-    .story-line {
-      background: linear-gradient(to bottom, transparent, #C9A84C 20%, #C9A84C 80%, transparent);
-    }
-
-    /* ── Wavy section divider ── */
-    .wave-down svg { display:block; }
-
-    /* ── Kerala lamp flame ── */
+    /* Kerala lamp flame */
     @keyframes flicker {
-      0%,100% { transform: scaleY(1) translateX(0); }
-      25%      { transform: scaleY(1.1) translateX(1px); }
-      75%      { transform: scaleY(.95) translateX(-1px); }
+      0%,100%{transform:scaleY(1) translateX(0)}
+      25%{transform:scaleY(1.1) translateX(1px)}
+      75%{transform:scaleY(.95) translateX(-1px)}
     }
-    .flame { animation: flicker 1.8s ease-in-out infinite; transform-origin: bottom center; }
+    .flame { animation:flicker 1.8s ease-in-out infinite; transform-origin:bottom center; }
+
+    /* Countdown */
+    @keyframes pulse-soft { 0%,100%{transform:scale(1)} 50%{transform:scale(1.04)} }
+    .cd-num { animation:pulse-soft 2s ease-in-out infinite; }
+
+    /* ══════════════════════════════════════════
+       STORY — MAGAZINE LAYOUT
+    ══════════════════════════════════════════ */
+    .story-chapter {
+      display:grid; grid-template-columns:1fr 1fr;
+      min-height:500px;
+    }
+    @media (max-width:767px) {
+      .story-chapter { grid-template-columns:1fr; min-height:auto; }
+    }
+
+    /* Reverse even chapters */
+    .story-chapter.reverse .story-photo { order:2; }
+    .story-chapter.reverse .story-text  { order:1; }
+    @media (max-width:767px) {
+      .story-chapter.reverse .story-photo { order:1; }
+      .story-chapter.reverse .story-text  { order:2; }
+    }
+
+    .story-photo {
+      position:relative; overflow:hidden;
+      min-height:340px; cursor:zoom-in;
+    }
+    .story-photo img {
+      width:100%; height:100%; object-fit:cover;
+      object-position:center 12%; display:block;
+      transition:transform .7s ease;
+    }
+    .story-photo:hover img { transform:scale(1.05); }
+
+    /* Inner gold frame on hover */
+    .story-photo .inner-frame {
+      position:absolute; inset:14px; z-index:1;
+      border:1px solid rgba(201,168,76,0);
+      transition:border-color .4s; pointer-events:none;
+    }
+    .story-photo:hover .inner-frame { border-color:rgba(201,168,76,.55); }
+
+    /* Chapter label gradient at bottom of photo */
+    .story-photo .photo-caption {
+      position:absolute; bottom:0; left:0; right:0;
+      padding:.75rem 1.2rem; z-index:2;
+      background:linear-gradient(transparent, rgba(20,14,10,.5));
+    }
+
+    .story-text {
+      display:flex; align-items:center;
+      padding:3.5rem; background:#FFF8F0;
+      position:relative; overflow:hidden;
+    }
+    .story-chapter.reverse .story-text { background:#F0FFF0; }
+    @media (max-width:767px) { .story-text { padding:2rem 1.5rem; } }
+
+    /* Big watermark number */
+    .ch-watermark {
+      position:absolute; top:-1rem; right:1rem;
+      font-family:'Cinzel',serif; font-size:5.5rem;
+      color:rgba(201,168,76,.07); line-height:1;
+      pointer-events:none; user-select:none;
+    }
+
+    /* ══════════════════════════════════════════
+       GALLERY
+    ══════════════════════════════════════════ */
+    .gallery-grid {
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:8px;
+    }
+    @media (max-width:767px) { .gallery-grid { grid-template-columns:repeat(2,1fr); gap:5px; } }
+
+    .gal-item {
+      position:relative; overflow:hidden;
+      aspect-ratio:3/4; cursor:zoom-in;
+    }
+    /* First and 4th items span 2 rows on desktop for a masonry feel */
+    .gal-item:nth-child(1),
+    .gal-item:nth-child(4) { aspect-ratio:auto; grid-row:span 2; }
+    @media (max-width:767px) {
+      .gal-item:nth-child(1),
+      .gal-item:nth-child(4) { aspect-ratio:3/4; grid-row:auto; }
+    }
+
+    .gal-item img {
+      width:100%; height:100%; object-fit:cover;
+      object-position:center 12%; display:block;
+      transition:transform .45s ease;
+    }
+    .gal-item:hover img { transform:scale(1.07); }
+
+    .gal-overlay {
+      position:absolute; inset:0;
+      background:linear-gradient(135deg, rgba(201,168,76,0), rgba(201,168,76,.3));
+      opacity:0; transition:opacity .3s;
+      display:flex; align-items:center; justify-content:center;
+    }
+    .gal-item:hover .gal-overlay { opacity:1; }
+
+    /* ══════════════════════════════════════════
+       LIGHTBOX
+    ══════════════════════════════════════════ */
+    #lightbox {
+      position:fixed; inset:0;
+      background:rgba(18,12,8,.93);
+      z-index:9999;
+      display:flex; align-items:center; justify-content:center;
+      opacity:0; pointer-events:none;
+      transition:opacity .3s;
+    }
+    #lightbox.open { opacity:1; pointer-events:all; }
+
+    #lb-img {
+      max-width:min(88vw,680px); max-height:88vh;
+      object-fit:contain; display:block;
+      border:1.5px solid rgba(201,168,76,.35);
+      box-shadow:0 24px 64px rgba(0,0,0,.55);
+      transition:opacity .2s;
+    }
+    #lb-img.fading { opacity:0; }
+
+    #lb-close {
+      position:absolute; top:1.2rem; right:1.2rem;
+      width:44px; height:44px; border-radius:50%;
+      display:flex; align-items:center; justify-content:center;
+      cursor:pointer; color:rgba(255,255,255,.6);
+      font-size:1.5rem; transition:color .2s,background .2s;
+    }
+    #lb-close:hover { color:#C9A84C; background:rgba(255,255,255,.06); }
+
+    #lb-prev, #lb-next {
+      position:absolute; top:50%; transform:translateY(-50%);
+      width:52px; height:52px; border-radius:50%;
+      display:flex; align-items:center; justify-content:center;
+      cursor:pointer; color:rgba(255,255,255,.55);
+      transition:color .2s,background .2s;
+    }
+    #lb-prev { left:1.2rem; } #lb-next { right:1.2rem; }
+    #lb-prev:hover, #lb-next:hover { color:#C9A84C; background:rgba(255,255,255,.06); }
+
+    #lb-counter {
+      position:absolute; bottom:1.4rem; left:50%; transform:translateX(-50%);
+      font-family:'Lato',sans-serif; font-size:.7rem;
+      letter-spacing:.18em; color:rgba(255,255,255,.35);
+    }
+
+    /* ══════════════════════════════════════════
+       EVENT CARDS
+    ══════════════════════════════════════════ */
+    .event-card { transition:transform .3s,box-shadow .3s; }
+    .event-card:hover { transform:translateY(-5px); box-shadow:0 18px 40px rgba(201,168,76,.18); }
+
+    /* Choice pills */
+    .choice-pill { border:1.5px solid rgba(201,168,76,.45); transition:background .25s,color .25s,border-color .25s,transform .2s; cursor:pointer; }
+    .choice-pill.selected-yes { background:#C9A84C; color:#fff; border-color:#C9A84C; }
+    .choice-pill.selected-no  { background:#8FAF8F; color:#fff; border-color:#8FAF8F; }
+    .choice-pill:hover { transform:scale(1.02); }
+
+    /* Custom checkbox */
+    .cb-box { width:20px; height:20px; border:1.5px solid #C9A84C; display:flex; align-items:center; justify-content:center; flex-shrink:0; transition:background .2s; cursor:pointer; }
+    .cb-box.checked { background:rgba(201,168,76,.15); }
+    .cb-box .cb-tick { opacity:0; transition:opacity .2s; }
+    .cb-box.checked .cb-tick { opacity:1; }
+
+    /* Form inputs */
+    .f-input { background:#FFF8F0; border:1.5px solid rgba(201,168,76,.35); padding:.75rem 1rem; width:100%; font-family:'Cormorant Garamond',serif; font-size:1rem; color:#3D2B1F; transition:border-color .25s,box-shadow .25s; outline:none; }
+    .f-input:focus { border-color:#C9A84C; box-shadow:0 0 0 3px rgba(201,168,76,.14); }
   </style>
 </head>
 <body class="font-body">
 
-  <!-- ═══════════════════════════════════════════
-       FLOATING PETALS CONTAINER
-  ═══════════════════════════════════════════ -->
+  <!-- ── LIGHTBOX ── -->
+  <div id="lightbox">
+    <div id="lb-close" onclick="closeLB()" title="Close (Esc)">✕</div>
+    <div id="lb-prev" onclick="navLB(-1)" title="Previous">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+        <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+    <img id="lb-img" src="" alt="Gallery photo">
+    <div id="lb-next" onclick="navLB(1)" title="Next">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+        <path d="M9 6L15 12L9 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+    <div id="lb-counter">1 / 9</div>
+  </div>
+
+  <!-- ── PETALS ── -->
   <div id="petal-wrap" class="fixed inset-0 pointer-events-none z-0 overflow-hidden"></div>
 
-  <!-- ═══════════════════════════════════════════
-       STICKY NAVIGATION
-  ═══════════════════════════════════════════ -->
+  <!-- ══════════════════════════════════════════
+       NAVIGATION
+  ══════════════════════════════════════════ -->
   <nav id="navbar" class="fixed top-0 inset-x-0 z-50 transition-all duration-300 py-4 px-6">
-    <div class="max-w-5xl mx-auto flex items-center justify-between">
-      <!-- Logo (shows after scroll) -->
+    <div class="max-w-6xl mx-auto flex items-center justify-between">
       <span id="nav-logo" class="font-script text-gold text-2xl opacity-0 transition-opacity duration-500">P ♡ A</span>
-
-      <!-- Links -->
-      <div class="flex gap-5 md:gap-8 text-xs tracking-widest uppercase font-body">
-        <a href="#story"  class="nav-link text-warmBrown hover:text-gold-dark transition-colors">Story</a>
-        <a href="#events" class="nav-link text-warmBrown hover:text-gold-dark transition-colors">Events</a>
-        <a href="#venue"  class="nav-link text-warmBrown hover:text-gold-dark transition-colors">Venue</a>
-        <a href="#rsvp"   class="nav-link text-warmBrown hover:text-gold-dark transition-colors">RSVP</a>
+      <div class="flex gap-4 md:gap-7 text-[10px] tracking-widest uppercase font-body">
+        <a href="#story"   class="nav-link text-warmBrown hover:text-gold-dark transition-colors">Story</a>
+        <a href="#gallery" class="nav-link text-warmBrown hover:text-gold-dark transition-colors">Gallery</a>
+        <a href="#events"  class="nav-link text-warmBrown hover:text-gold-dark transition-colors">Events</a>
+        <a href="#venue"   class="nav-link text-warmBrown hover:text-gold-dark transition-colors">Venue</a>
+        <a href="#rsvp"    class="nav-link text-warmBrown hover:text-gold-dark transition-colors">RSVP</a>
       </div>
     </div>
   </nav>
 
-  <!-- ═══════════════════════════════════════════
-       HERO
-  ═══════════════════════════════════════════ -->
-  <section id="hero" class="relative min-h-screen flex flex-col items-center justify-center hero-bg overflow-hidden">
+  <!-- ══════════════════════════════════════════
+       HERO — SPLIT LAYOUT
+       ★ PHOTO SETUP:
+         Place photos/ folder next to this HTML file.
+         photos/hero.jpg     → recommended: photo 5 (misty morning walk) or photo 3 (boat)
+  ══════════════════════════════════════════ -->
+  <section id="hero" class="hero-split relative">
 
-    <!-- Top gold rule -->
-    <div class="absolute top-0 inset-x-0 h-[3px]"
+    <!-- Top gold rule (full width) -->
+    <div class="absolute top-0 inset-x-0 h-[3px] z-10"
          style="background:linear-gradient(90deg,transparent,#C9A84C,#F0D060,#C9A84C,transparent)"></div>
 
-    <!-- Left coconut palm -->
-    <div class="absolute left-0 bottom-0 opacity-[.12] pointer-events-none w-36 md:w-48">
-      <svg viewBox="0 0 180 480" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <!-- trunk -->
-        <path d="M90 480 C87 440 84 390 90 330 C96 270 92 210 88 155 C84 105 88 65 90 30"
-              stroke="#5C8060" stroke-width="13" stroke-linecap="round"/>
-        <!-- fronds -->
-        <path d="M90 50 C65 35 25 28 2  12 C42 28 78 44 90 50Z" fill="#5C8060"/>
-        <path d="M90 50 C115 30 155 18 178 2 C140 22 108 40 90 50Z" fill="#5C8060"/>
-        <path d="M90 50 C80 22 88 5 98 -5 C96 18 92 36 90 50Z" fill="#5C8060" opacity=".85"/>
-        <path d="M90 50 C55 50 18 62 -2 58 C35 56 72 52 90 50Z" fill="#5C8060" opacity=".75"/>
-        <path d="M90 50 C125 46 162 52 182 46 C148 48 112 49 90 50Z" fill="#5C8060" opacity=".75"/>
-        <path d="M90 50 C60 68 28 84 4 92 C36 82 68 66 90 50Z" fill="#5C8060" opacity=".65"/>
-        <path d="M90 50 C120 65 152 78 176 84 C146 74 116 62 90 50Z" fill="#5C8060" opacity=".65"/>
-        <!-- coconuts -->
-        <circle cx="84" cy="60" r="9" fill="#8B6810" opacity=".55"/>
-        <circle cx="99" cy="56" r="8" fill="#8B6810" opacity=".55"/>
-      </svg>
-    </div>
+    <!-- ─ LEFT: PHOTO COLUMN ─ -->
+    <div class="hero-photo-col">
+      <!--
+        ★ REPLACE src: photos/hero.jpg
+           Recommended photo: the misty morning walk (both facing camera)
+           object-position "center 15%" keeps faces near top — adjust if needed
+      -->
+      <img src="photo/IMG_3645.JPG"
+           alt="Hari Kripa and Midhun Raj"
+           loading="eager"
+           onerror="this.parentElement.style.background='linear-gradient(160deg,#D4E8D4 0%,#FFCBA4 100%)';this.style.display='none'">
 
-    <!-- Right coconut palm (mirrored) -->
-    <div class="absolute right-0 bottom-0 opacity-[.12] pointer-events-none w-36 md:w-48" style="transform:scaleX(-1)">
-      <svg viewBox="0 0 180 480" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M90 480 C87 440 84 390 90 330 C96 270 92 210 88 155 C84 105 88 65 90 30"
-              stroke="#5C8060" stroke-width="13" stroke-linecap="round"/>
-        <path d="M90 50 C65 35 25 28 2  12 C42 28 78 44 90 50Z" fill="#5C8060"/>
-        <path d="M90 50 C115 30 155 18 178 2 C140 22 108 40 90 50Z" fill="#5C8060"/>
-        <path d="M90 50 C80 22 88 5 98 -5 C96 18 92 36 90 50Z" fill="#5C8060" opacity=".85"/>
-        <path d="M90 50 C55 50 18 62 -2 58 C35 56 72 52 90 50Z" fill="#5C8060" opacity=".75"/>
-        <path d="M90 50 C125 46 162 52 182 46 C148 48 112 49 90 50Z" fill="#5C8060" opacity=".75"/>
-        <path d="M90 50 C60 68 28 84 4 92 C36 82 68 66 90 50Z" fill="#5C8060" opacity=".65"/>
-        <path d="M90 50 C120 65 152 78 176 84 C146 74 116 62 90 50Z" fill="#5C8060" opacity=".65"/>
-        <circle cx="84" cy="60" r="9" fill="#8B6810" opacity=".55"/>
-        <circle cx="99" cy="56" r="8" fill="#8B6810" opacity=".55"/>
-      </svg>
-    </div>
-
-    <!-- Nilavilakku (Kerala lamp) top-center -->
-    <div class="absolute top-12 left-1/2 -translate-x-1/2 opacity-25 pointer-events-none">
-      <svg width="44" height="68" viewBox="0 0 44 68" fill="none">
-        <!-- flame -->
-        <path class="flame" d="M22 18 C20 12 18 7 22 2 C26 7 24 12 22 18Z" fill="#F0A040"/>
-        <!-- wick holder -->
-        <ellipse cx="22" cy="20" rx="7" ry="3" fill="#C9A84C"/>
-        <!-- oil bowl -->
-        <path d="M14 20 C14 26 10 30 10 34 C10 38 15 40 22 40 C29 40 34 38 34 34 C34 30 30 26 30 20Z"
-              fill="#C9A84C"/>
-        <!-- stem -->
-        <rect x="19" y="40" width="6" height="18" fill="#C9A84C"/>
-        <!-- base plate -->
-        <ellipse cx="22" cy="60" rx="16" ry="5" fill="#C9A84C"/>
-        <ellipse cx="22" cy="64" rx="11" ry="3" fill="#B8960C"/>
-      </svg>
-    </div>
-
-    <!-- Diagonal decorative lines (corner) -->
-    <div class="absolute top-16 left-8 md:left-16 opacity-20 hidden md:block pointer-events-none">
-      <svg width="60" height="60" viewBox="0 0 60 60" fill="none">
-        <line x1="0" y1="60" x2="60" y2="0" stroke="#C9A84C" stroke-width="1"/>
-        <line x1="10" y1="60" x2="60" y2="10" stroke="#C9A84C" stroke-width="1"/>
-        <line x1="20" y1="60" x2="60" y2="20" stroke="#C9A84C" stroke-width="1"/>
-      </svg>
-    </div>
-    <div class="absolute top-16 right-8 md:right-16 opacity-20 hidden md:block pointer-events-none" style="transform:scaleX(-1)">
-      <svg width="60" height="60" viewBox="0 0 60 60" fill="none">
-        <line x1="0" y1="60" x2="60" y2="0" stroke="#C9A84C" stroke-width="1"/>
-        <line x1="10" y1="60" x2="60" y2="10" stroke="#C9A84C" stroke-width="1"/>
-        <line x1="20" y1="60" x2="60" y2="20" stroke="#C9A84C" stroke-width="1"/>
-      </svg>
-    </div>
-
-    <!-- ── MAIN CONTENT ── -->
-    <div class="relative z-10 text-center px-6 pt-24 pb-20 max-w-3xl w-full mx-auto">
-
-      <!-- Lotus ornament + rule -->
-      <div class="flex items-center justify-center gap-4 mb-7">
-        <div class="h-px flex-1 max-w-20 md:max-w-32"
-             style="background:linear-gradient(90deg,transparent,#C9A84C)"></div>
-        <!-- Lotus -->
-        <svg width="38" height="30" viewBox="0 0 38 30" fill="none">
-          <path d="M19 29C19 29 8 21 8 13C8 6.4 12.5 2 19 2C25.5 2 30 6.4 30 13C30 21 19 29 19 29Z"
-                fill="#FFCBA4" opacity=".7"/>
-          <path d="M19 29C15 24 4 22 2 14C0 8 4.5 2 11 4C14.5 5.5 17 11 19 15C21 11 23.5 5.5 27 4C33.5 2 38 8 36 14C34 22 23 24 19 29Z"
-                fill="#F5A67A" opacity=".45"/>
-          <path d="M19 29C17 25 13 20 13 15C13 11 15.5 9 19 9C22.5 9 25 11 25 15C25 20 21 25 19 29Z"
-                fill="#E8956D" opacity=".55"/>
-          <circle cx="19" cy="14" r="3.5" fill="#C9A84C"/>
+      <!-- Subtle left coconut palm watermark -->
+      <div class="absolute left-0 bottom-0 w-28 opacity-[.14] pointer-events-none hidden md:block">
+        <svg viewBox="0 0 180 480" fill="none">
+          <path d="M90 480 C87 440 84 390 90 330 C96 270 92 210 88 155 C84 105 88 65 90 30" stroke="#fff" stroke-width="12" stroke-linecap="round"/>
+          <path d="M90 50 C65 35 25 28 2 12 C42 28 78 44 90 50Z" fill="#fff"/>
+          <path d="M90 50 C115 30 155 18 178 2 C140 22 108 40 90 50Z" fill="#fff"/>
+          <path d="M90 50 C80 22 88 5 98 -5 C96 18 92 36 90 50Z" fill="#fff" opacity=".85"/>
+          <path d="M90 50 C55 50 18 62 -2 58 C35 56 72 52 90 50Z" fill="#fff" opacity=".7"/>
+          <path d="M90 50 C125 46 162 52 182 46 C148 48 112 49 90 50Z" fill="#fff" opacity=".7"/>
         </svg>
-        <div class="h-px flex-1 max-w-20 md:max-w-32"
-             style="background:linear-gradient(90deg,#C9A84C,transparent)"></div>
       </div>
 
-      <!-- Save the date label -->
-      <p class="font-heading text-gold tracking-[.3em] uppercase text-xs md:text-sm mb-5 italic">— Save the Date —</p>
+      <!-- Kerala lamp at base of photo column -->
+      <div class="lamp-on-photo hidden md:block">
+        <svg width="32" height="50" viewBox="0 0 44 68" fill="none">
+          <path class="flame" d="M22 18 C20 12 18 7 22 2 C26 7 24 12 22 18Z" fill="#F0A040"/>
+          <ellipse cx="22" cy="20" rx="7" ry="3" fill="rgba(255,248,240,.85)"/>
+          <path d="M14 20 C14 26 10 30 10 34 C10 38 15 40 22 40 C29 40 34 38 34 34 C34 30 30 26 30 20Z" fill="rgba(255,248,240,.85)"/>
+          <rect x="19" y="40" width="6" height="18" fill="rgba(255,248,240,.85)"/>
+          <ellipse cx="22" cy="60" rx="16" ry="5" fill="rgba(255,248,240,.85)"/>
+        </svg>
+      </div>
+    </div>
 
-      <!-- NAMES -->
-      <h1 class="font-heading font-light text-warmBrown italic leading-none mb-2"
-          style="font-size:clamp(3.4rem,9vw,6.5rem)">Priya</h1>
+    <!-- ─ RIGHT: CONTENT COLUMN ─ -->
+    <div class="hero-content-col">
 
-      <div class="flex items-center justify-center gap-3 my-1">
-        <div class="h-px flex-1 max-w-12" style="background:linear-gradient(90deg,transparent,#C9A84C)"></div>
-        <span class="font-script text-gold" style="font-size:clamp(1.8rem,4vw,3rem)">&amp;</span>
-        <div class="h-px flex-1 max-w-12" style="background:linear-gradient(90deg,#C9A84C,transparent)"></div>
+      <!-- Background diagonal lines -->
+      <div class="absolute top-12 right-8 opacity-[.08] pointer-events-none hidden md:block">
+        <svg width="70" height="70" viewBox="0 0 60 60" fill="none">
+          <line x1="0" y1="60" x2="60" y2="0" stroke="#C9A84C" stroke-width="1"/>
+          <line x1="12" y1="60" x2="60" y2="12" stroke="#C9A84C" stroke-width="1"/>
+          <line x1="24" y1="60" x2="60" y2="24" stroke="#C9A84C" stroke-width="1"/>
+        </svg>
+      </div>
+      <div class="absolute bottom-12 left-8 opacity-[.08] pointer-events-none hidden md:block" style="transform:rotate(180deg)">
+        <svg width="70" height="70" viewBox="0 0 60 60" fill="none">
+          <line x1="0" y1="60" x2="60" y2="0" stroke="#C9A84C" stroke-width="1"/>
+          <line x1="12" y1="60" x2="60" y2="12" stroke="#C9A84C" stroke-width="1"/>
+          <line x1="24" y1="60" x2="60" y2="24" stroke="#C9A84C" stroke-width="1"/>
+        </svg>
       </div>
 
-      <h1 class="font-heading font-light text-warmBrown italic leading-none mb-8"
-          style="font-size:clamp(3.4rem,9vw,6.5rem)">Arjun</h1>
+      <div class="w-full max-w-md relative">
 
-      <!-- Date badge with corner marks -->
-      <div class="inline-block mb-8 relative">
-        <div class="px-8 py-4 border-2" style="border-color:#C9A84C">
-          <!-- corners -->
-          <div class="absolute -top-[3px] -left-[3px] w-3.5 h-3.5"
-               style="border-top:2px solid #C9A84C;border-left:2px solid #C9A84C"></div>
-          <div class="absolute -top-[3px] -right-[3px] w-3.5 h-3.5"
-               style="border-top:2px solid #C9A84C;border-right:2px solid #C9A84C"></div>
-          <div class="absolute -bottom-[3px] -left-[3px] w-3.5 h-3.5"
-               style="border-bottom:2px solid #C9A84C;border-left:2px solid #C9A84C"></div>
-          <div class="absolute -bottom-[3px] -right-[3px] w-3.5 h-3.5"
-               style="border-bottom:2px solid #C9A84C;border-right:2px solid #C9A84C"></div>
+        <!-- Top lotus ornament -->
+        <div class="flex items-center gap-3 mb-6">
+          <div class="h-px flex-1" style="background:linear-gradient(90deg,transparent,#C9A84C)"></div>
+          <svg width="32" height="26" viewBox="0 0 38 30" fill="none">
+            <path d="M19 29C19 29 8 21 8 13C8 6.4 12.5 2 19 2C25.5 2 30 6.4 30 13C30 21 19 29 19 29Z" fill="#FFCBA4" opacity=".7"/>
+            <path d="M19 29C15 24 4 22 2 14C0 8 4.5 2 11 4C14.5 5.5 17 11 19 15C21 11 23.5 5.5 27 4C33.5 2 38 8 36 14C34 22 23 24 19 29Z" fill="#F5A67A" opacity=".45"/>
+            <path d="M19 29C17 25 13 20 13 15C13 11 15.5 9 19 9C22.5 9 25 11 25 15C25 20 21 25 19 29Z" fill="#E8956D" opacity=".5"/>
+            <circle cx="19" cy="14" r="3.5" fill="#C9A84C"/>
+          </svg>
+          <div class="h-px flex-1" style="background:linear-gradient(90deg,#C9A84C,transparent)"></div>
+        </div>
 
-          <p class="font-heading text-warmBrown text-xl md:text-2xl tracking-wide">Friday, December 19, 2025</p>
-          <p class="font-body text-sage-dark text-xs tracking-[.22em] uppercase mt-1">Thrissur · Kerala</p>
+        <!-- Save the Date -->
+        <p class="font-heading text-gold tracking-[.3em] uppercase text-xs mb-5 italic text-center">— Save the Date —</p>
+
+        <!-- Names -->
+        <h1 class="font-heading font-light text-warmBrown italic leading-none text-center mb-1"
+            style="font-size:clamp(2.8rem,4.5vw,5.2rem)">Hari Kripa</h1>
+        <div class="flex items-center justify-center gap-3 my-1">
+          <div class="h-px flex-1 max-w-10" style="background:linear-gradient(90deg,transparent,#C9A84C)"></div>
+          <span class="font-script text-gold" style="font-size:clamp(1.6rem,2.8vw,2.4rem)">&amp;</span>
+          <div class="h-px flex-1 max-w-10" style="background:linear-gradient(90deg,#C9A84C,transparent)"></div>
+        </div>
+        <h1 class="font-heading font-light text-warmBrown italic leading-none text-center mb-7"
+            style="font-size:clamp(2.8rem,4.5vw,5.2rem)">Midhun Raj</h1>
+
+        <!-- Date badge with corner marks -->
+        <div class="relative mb-7 mx-auto" style="width:fit-content">
+          <div class="px-7 py-3.5 border-2 text-center" style="border-color:#C9A84C">
+            <div class="absolute -top-[3px] -left-[3px] w-3 h-3" style="border-top:2px solid #C9A84C;border-left:2px solid #C9A84C"></div>
+            <div class="absolute -top-[3px] -right-[3px] w-3 h-3" style="border-top:2px solid #C9A84C;border-right:2px solid #C9A84C"></div>
+            <div class="absolute -bottom-[3px] -left-[3px] w-3 h-3" style="border-bottom:2px solid #C9A84C;border-left:2px solid #C9A84C"></div>
+            <div class="absolute -bottom-[3px] -right-[3px] w-3 h-3" style="border-bottom:2px solid #C9A84C;border-right:2px solid #C9A84C"></div>
+            <p class="font-heading text-warmBrown tracking-wide" style="font-size:clamp(.9rem,1.8vw,1.2rem)">Monday, 20 April 2026</p>
+            <p class="font-body text-sage-dark text-[10px] tracking-[.22em] uppercase mt-0.5">Kundamkuzhi Temple</p>
+          </div>
+        </div>
+
+        <!-- Countdown -->
+        <div class="mb-7 text-center">
+          <p class="font-heading text-gold-dark text-[10px] tracking-[.2em] uppercase mb-3 italic">
+            Counting down to our big day
+          </p>
+          <div class="flex items-start justify-center gap-2 md:gap-3">
+            <div class="text-center">
+              <div class="cd-num font-heading text-warmBrown font-light" id="cd-d"
+                   style="font-size:clamp(2rem,3.5vw,3.2rem);line-height:1">00</div>
+              <p class="font-body text-[9px] tracking-[.16em] uppercase text-sage-dark mt-0.5">Days</p>
+            </div>
+            <span class="font-heading text-gold text-xl mt-0.5 leading-none">:</span>
+            <div class="text-center">
+              <div class="cd-num font-heading text-warmBrown font-light" id="cd-h"
+                   style="font-size:clamp(2rem,3.5vw,3.2rem);line-height:1">00</div>
+              <p class="font-body text-[9px] tracking-[.16em] uppercase text-sage-dark mt-0.5">Hours</p>
+            </div>
+            <span class="font-heading text-gold text-xl mt-0.5 leading-none">:</span>
+            <div class="text-center">
+              <div class="cd-num font-heading text-warmBrown font-light" id="cd-m"
+                   style="font-size:clamp(2rem,3.5vw,3.2rem);line-height:1">00</div>
+              <p class="font-body text-[9px] tracking-[.16em] uppercase text-sage-dark mt-0.5">Mins</p>
+            </div>
+            <span class="font-heading text-gold text-xl mt-0.5 leading-none">:</span>
+            <div class="text-center">
+              <div class="cd-num font-heading text-warmBrown font-light" id="cd-s"
+                   style="font-size:clamp(2rem,3.5vw,3.2rem);line-height:1">00</div>
+              <p class="font-body text-[9px] tracking-[.16em] uppercase text-sage-dark mt-0.5">Secs</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- CTAs -->
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-3 mb-6">
+          <a href="#rsvp" class="btn-gold font-body tracking-[.22em] uppercase text-xs px-8 py-3 w-full sm:w-auto text-center">
+            RSVP Now
+          </a>
+          <a href="#events"
+             class="font-body tracking-[.2em] uppercase text-xs px-8 py-3 border text-gold-dark hover:bg-gold hover:text-white transition-all duration-300 w-full sm:w-auto text-center"
+             style="border-color:#C9A84C">
+            View Details
+          </a>
+        </div>
+
+        <!-- Bottom ornament -->
+        <div class="flex items-center gap-3">
+          <div class="h-px flex-1" style="background:linear-gradient(90deg,transparent,#C9A84C)"></div>
+          <svg width="14" height="14" viewBox="0 0 18 18" fill="none">
+            <path d="M9 0L10.8 7L18 9L10.8 11L9 18L7.2 11L0 9L7.2 7Z" fill="#C9A84C" opacity=".55"/>
+          </svg>
+          <div class="h-px flex-1" style="background:linear-gradient(90deg,#C9A84C,transparent)"></div>
         </div>
       </div>
 
-      <!-- COUNTDOWN -->
-      <div class="mb-10">
-        <p class="font-heading text-gold-dark text-xs tracking-[.25em] uppercase mb-4 italic">
-          Counting down to our big day
-        </p>
-        <div class="flex items-start justify-center gap-3 md:gap-6">
-          <div class="text-center">
-            <div class="cd-num font-heading text-warmBrown font-light" id="cd-d"
-                 style="font-size:clamp(2.5rem,7vw,4.5rem);line-height:1">00</div>
-            <p class="font-body text-[10px] tracking-[.2em] uppercase text-sage-dark mt-1">Days</p>
-          </div>
-          <span class="font-heading text-gold text-3xl mt-1">:</span>
-          <div class="text-center">
-            <div class="cd-num font-heading text-warmBrown font-light" id="cd-h"
-                 style="font-size:clamp(2.5rem,7vw,4.5rem);line-height:1">00</div>
-            <p class="font-body text-[10px] tracking-[.2em] uppercase text-sage-dark mt-1">Hours</p>
-          </div>
-          <span class="font-heading text-gold text-3xl mt-1">:</span>
-          <div class="text-center">
-            <div class="cd-num font-heading text-warmBrown font-light" id="cd-m"
-                 style="font-size:clamp(2.5rem,7vw,4.5rem);line-height:1">00</div>
-            <p class="font-body text-[10px] tracking-[.2em] uppercase text-sage-dark mt-1">Mins</p>
-          </div>
-          <span class="font-heading text-gold text-3xl mt-1">:</span>
-          <div class="text-center">
-            <div class="cd-num font-heading text-warmBrown font-light" id="cd-s"
-                 style="font-size:clamp(2.5rem,7vw,4.5rem);line-height:1">00</div>
-            <p class="font-body text-[10px] tracking-[.2em] uppercase text-sage-dark mt-1">Secs</p>
-          </div>
+      <!-- Scroll indicator -->
+      <div class="absolute bottom-6 left-1/2 -translate-x-1/2 animate-bounce pointer-events-none">
+        <div class="flex flex-col items-center gap-1">
+          <p class="font-body text-[8px] tracking-[.2em] uppercase text-sage-dark">Scroll</p>
+          <svg width="16" height="24" viewBox="0 0 18 28" fill="none">
+            <rect x="5" y="1" width="8" height="14" rx="4" stroke="#C9A84C" stroke-width="1.5"/>
+            <path d="M5 22L9 27L13 22" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
         </div>
       </div>
-
-      <!-- CTAs -->
-      <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
-        <a href="#rsvp"
-           class="btn-gold font-body tracking-[.25em] uppercase text-sm px-9 py-3">
-          RSVP Now
-        </a>
-        <a href="#events"
-           class="font-body tracking-[.22em] uppercase text-sm px-9 py-3 border text-gold-dark hover:bg-gold hover:text-white transition-all duration-300"
-           style="border-color:#C9A84C">
-          View Details
-        </a>
-      </div>
-
-      <!-- Bottom ornament -->
-      <div class="flex items-center justify-center gap-4 mt-10">
-        <div class="h-px flex-1 max-w-20" style="background:linear-gradient(90deg,transparent,#C9A84C)"></div>
-        <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
-          <path d="M9 0 L10.8 7 L18 9 L10.8 11 L9 18 L7.2 11 L0 9 L7.2 7 Z" fill="#C9A84C" opacity=".65"/>
-        </svg>
-        <div class="h-px flex-1 max-w-20" style="background:linear-gradient(90deg,#C9A84C,transparent)"></div>
-      </div>
-    </div>
-
-    <!-- Scroll indicator -->
-    <div class="absolute bottom-7 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 animate-bounce">
-      <p class="font-body text-[9px] tracking-[.25em] uppercase text-sage-dark">Scroll</p>
-      <svg width="18" height="28" viewBox="0 0 18 28" fill="none">
-        <rect x="5" y="1" width="8" height="14" rx="4" stroke="#C9A84C" stroke-width="1.5"/>
-        <circle cx="9" cy="6" r="2" fill="#C9A84C"/>
-        <path d="M5 22 L9 27 L13 22" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-      </svg>
     </div>
 
     <!-- Bottom gold rule -->
@@ -443,159 +525,305 @@
          style="background:linear-gradient(90deg,transparent,#C9A84C,#F0D060,#C9A84C,transparent)"></div>
   </section>
 
-  <!-- Wave down into story -->
-  <div class="wave-down" style="background:#D4E8D4">
-    <svg viewBox="0 0 1440 60" preserveAspectRatio="none" style="height:60px;width:100%">
+  <!-- Wave -->
+  <div style="background:#D4E8D4">
+    <svg viewBox="0 0 1440 60" preserveAspectRatio="none" style="height:60px;width:100%;display:block">
       <path d="M0,60 C360,0 1080,0 1440,60 L1440,0 L0,0 Z" fill="#FFF8F0"/>
     </svg>
   </div>
 
-  <!-- ═══════════════════════════════════════════
-       OUR STORY
-  ═══════════════════════════════════════════ -->
-  <section id="story" class="py-20 px-6" style="background:#D4E8D4">
-    <div class="max-w-5xl mx-auto">
+  <!-- ══════════════════════════════════════════
+       OUR STORY — MAGAZINE LAYOUT
+       ★ PHOTO SETUP:
+         photos/story-1.jpg → Photo 1: hand-in-hand walk on path
+         photos/story-2.jpg → Photo 3: boat on backwaters
+         photos/story-3.jpg → Photo 2: embrace in the fields
+  ══════════════════════════════════════════ -->
+  <section id="story" style="background:#D4E8D4">
 
-      <!-- Section header -->
-      <div class="text-center mb-16 reveal">
-        <p class="font-heading text-sage-dark text-xs tracking-[.3em] uppercase mb-3">How it all began</p>
-        <h2 class="font-heading font-light text-warmBrown italic mb-4"
-            style="font-size:clamp(2.8rem,7vw,5rem)">Our Story</h2>
-        <div class="flex items-center justify-center gap-3">
-          <div class="h-px w-14" style="background:#5C8060"></div>
-          <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-            <circle cx="7" cy="7" r="6" stroke="#5C8060" stroke-width="1.2"/>
-            <circle cx="7" cy="7" r="2.5" fill="#5C8060"/>
+    <!-- Section header -->
+    <div class="py-14 text-center px-6 reveal">
+      <p class="font-heading text-sage-dark text-xs tracking-[.3em] uppercase mb-3">How it all began</p>
+      <h2 class="font-heading font-light text-warmBrown italic mb-4"
+          style="font-size:clamp(2.8rem,7vw,5rem)">Our Story</h2>
+      <div class="flex items-center justify-center gap-3">
+        <div class="h-px w-14" style="background:#5C8060"></div>
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+          <circle cx="7" cy="7" r="6" stroke="#5C8060" stroke-width="1.2"/>
+          <circle cx="7" cy="7" r="2.5" fill="#5C8060"/>
+        </svg>
+        <div class="h-px w-14" style="background:#5C8060"></div>
+      </div>
+    </div>
+
+    <!-- Chapter 1 — photo LEFT, text RIGHT -->
+    <div class="story-chapter reveal" onclick="">
+      <div class="story-photo" onclick="openLB(0)">
+        <!--
+          ★ photos/story-1.jpg = walking hand-in-hand on the path
+        -->
+        <img src="photo/IMG_3631.JPG" alt="How We Met" loading="lazy"
+             onerror="this.parentElement.style.background='linear-gradient(135deg,#D4E8D4,#A8C5A0)';this.style.display='none'">
+        <div class="inner-frame"></div>
+        <div class="photo-caption">
+          <p class="font-heading italic text-white text-sm opacity-85">Chapter One · How We Met</p>
+        </div>
+        <!-- Zoom hint -->
+        <div class="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity" style="opacity:.55">
+          <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+            <circle cx="11" cy="11" r="10" stroke="white" stroke-width="1.2"/>
+            <path d="M8 11H14M11 8V14" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
           </svg>
-          <div class="h-px w-14" style="background:#5C8060"></div>
         </div>
       </div>
-
-      <!-- Timeline -->
-      <div class="relative">
-        <!-- Vertical line (desktop) -->
-        <div class="hidden md:block absolute left-1/2 top-0 bottom-0 w-px story-line"
-             style="transform:translateX(-50%)"></div>
-
-        <!-- ── Chapter 1 ── -->
-        <div class="flex flex-col md:flex-row items-center gap-8 mb-16 reveal">
-          <!-- photo left -->
-          <div class="flex-1 flex md:justify-end">
-            <div class="photo-slot w-60 h-60 md:w-64 md:h-64 rounded-full shadow-lg border-4 border-white
-                        flex items-center justify-center">
-              <div class="relative z-10 text-center px-4">
-                <svg width="36" height="36" viewBox="0 0 36 36" fill="none" class="mx-auto mb-2 opacity-40">
-                  <rect x="3" y="7" width="30" height="22" rx="2" stroke="#5C8060" stroke-width="1.8"/>
-                  <circle cx="18" cy="18" r="6" stroke="#5C8060" stroke-width="1.8"/>
-                  <circle cx="27" cy="12" r="2" fill="#5C8060"/>
-                </svg>
-                <p class="font-heading italic text-warmBrown text-xs opacity-60">Your photo here</p>
-              </div>
-            </div>
-          </div>
-          <!-- connector dot -->
-          <div class="hidden md:flex w-9 h-9 rounded-full border-2 items-center justify-center flex-shrink-0 z-10"
-               style="background:#FFF8F0;border-color:#C9A84C">
-            <div class="w-3.5 h-3.5 rounded-full" style="background:#C9A84C"></div>
-          </div>
-          <!-- text right -->
-          <div class="flex-1">
-            <div class="bg-white bg-opacity-65 rounded-xl p-6 shadow-sm" style="backdrop-filter:blur(8px)">
-              <p class="font-heading text-gold text-xs tracking-[.22em] uppercase mb-1.5">Chapter One</p>
-              <h3 class="font-heading text-warmBrown text-2xl italic mb-3">How We Met</h3>
-              <p class="font-body text-warmBrown-light text-sm leading-relaxed" style="color:#7D5A4A">
-                On a rain-soaked June evening in Thrissur, two souls found each other at a mutual friend's gathering.
-                Conversation flowed like the monsoon itself — easy, warm, and seemingly endless. Neither knew that
-                crossing paths that night would set the course of forever.
-              </p>
-              <p class="font-heading text-gold italic text-sm mt-4">— June 2022, Thrissur</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- ── Chapter 2 ── -->
-        <div class="flex flex-col md:flex-row-reverse items-center gap-8 mb-16 reveal">
-          <div class="flex-1 flex md:justify-start">
-            <div class="photo-slot w-60 h-60 md:w-64 md:h-64 rounded-xl shadow-lg border-4 border-white
-                        flex items-center justify-center">
-              <div class="relative z-10 text-center px-4">
-                <svg width="36" height="36" viewBox="0 0 36 36" fill="none" class="mx-auto mb-2 opacity-40">
-                  <rect x="3" y="7" width="30" height="22" rx="2" stroke="#5C8060" stroke-width="1.8"/>
-                  <circle cx="18" cy="18" r="6" stroke="#5C8060" stroke-width="1.8"/>
-                  <circle cx="27" cy="12" r="2" fill="#5C8060"/>
-                </svg>
-                <p class="font-heading italic text-warmBrown text-xs opacity-60">Your photo here</p>
-              </div>
-            </div>
-          </div>
-          <div class="hidden md:flex w-9 h-9 rounded-full border-2 items-center justify-center flex-shrink-0 z-10"
-               style="background:#FFF8F0;border-color:#C9A84C">
-            <div class="w-3.5 h-3.5 rounded-full" style="background:#C9A84C"></div>
-          </div>
-          <div class="flex-1 md:text-right">
-            <div class="bg-white bg-opacity-65 rounded-xl p-6 shadow-sm" style="backdrop-filter:blur(8px)">
-              <p class="font-heading text-gold text-xs tracking-[.22em] uppercase mb-1.5">Chapter Two</p>
-              <h3 class="font-heading text-warmBrown text-2xl italic mb-3">First Date</h3>
-              <p class="font-body text-sm leading-relaxed" style="color:#7D5A4A">
-                Under the amber glow of a Kerala sunset, they sat by the backwaters of Alleppey sharing a meal
-                and trading stories. The gentle houseboat lights and the scent of coconut on the breeze felt
-                like the whole world had conspired to be romantic that evening.
-              </p>
-              <p class="font-heading text-gold italic text-sm mt-4">— August 2022, Alleppey</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- ── Chapter 3 ── -->
-        <div class="flex flex-col md:flex-row items-center gap-8 reveal">
-          <div class="flex-1 flex md:justify-end">
-            <div class="photo-slot w-60 h-60 md:w-64 md:h-64 rounded-xl shadow-lg border-4 border-white
-                        flex items-center justify-center">
-              <div class="relative z-10 text-center px-4">
-                <svg width="36" height="36" viewBox="0 0 36 36" fill="none" class="mx-auto mb-2 opacity-40">
-                  <rect x="3" y="7" width="30" height="22" rx="2" stroke="#5C8060" stroke-width="1.8"/>
-                  <circle cx="18" cy="18" r="6" stroke="#5C8060" stroke-width="1.8"/>
-                  <circle cx="27" cy="12" r="2" fill="#5C8060"/>
-                </svg>
-                <p class="font-heading italic text-warmBrown text-xs opacity-60">Your photo here</p>
-              </div>
-            </div>
-          </div>
-          <div class="hidden md:flex w-9 h-9 rounded-full border-2 items-center justify-center flex-shrink-0 z-10"
-               style="background:#FFF8F0;border-color:#C9A84C">
-            <div class="w-3.5 h-3.5 rounded-full" style="background:#C9A84C"></div>
-          </div>
-          <div class="flex-1">
-            <div class="bg-white bg-opacity-65 rounded-xl p-6 shadow-sm" style="backdrop-filter:blur(8px)">
-              <p class="font-heading text-gold text-xs tracking-[.22em] uppercase mb-1.5">Chapter Three</p>
-              <h3 class="font-heading text-warmBrown text-2xl italic mb-3">The Proposal</h3>
-              <p class="font-body text-sm leading-relaxed" style="color:#7D5A4A">
-                Surrounded by jasmine garlands and the soft golden warmth of nilavilakku lamps at their
-                favourite temple, Arjun got down on one knee. With a heart full to overflowing, he asked
-                the question. Priya said yes — and the entire world felt it.
-              </p>
-              <p class="font-heading text-gold italic text-sm mt-4">— January 2025, Thrissur</p>
-            </div>
-          </div>
+      <div class="story-text">
+        <span class="ch-watermark">01</span>
+        <div class="w-full relative z-10">
+          <p class="font-heading text-gold text-xs tracking-[.22em] uppercase mb-2">Chapter One</p>
+          <h3 class="font-heading text-warmBrown italic mb-4"
+              style="font-size:clamp(1.8rem,3vw,2.6rem)">How We Met</h3>
+          <div class="h-px w-16 mb-4" style="background:linear-gradient(90deg,#C9A84C,transparent)"></div>
+          <p class="font-body text-sm leading-relaxed mb-5" style="color:#7D5A4A">
+            On a rain-soaked June evening in Thrissur, two souls found each other at a mutual friend's gathering.
+            Conversation flowed like the monsoon itself — easy, warm, and seemingly endless. Neither knew that
+            crossing paths that night would set the course of forever.
+          </p>
+          <p class="font-heading text-gold italic text-sm">— June 2022, Thrissur</p>
         </div>
       </div>
     </div>
+
+    <!-- Chapter 2 — text LEFT (reversed), photo RIGHT -->
+    <div class="story-chapter reverse reveal">
+      <div class="story-photo" onclick="openLB(1)">
+        <!--
+          ★ photos/story-2.jpg = boat on backwaters with decorated umbrella
+        -->
+        <img src="photo/IMG_3644.JPG" alt="First Date" loading="lazy"
+             onerror="this.parentElement.style.background='linear-gradient(135deg,#FFCBA4,#D4E8D4)';this.style.display='none'">
+        <div class="inner-frame"></div>
+        <div class="photo-caption">
+          <p class="font-heading italic text-white text-sm opacity-85">Chapter Two · First Date</p>
+        </div>
+      </div>
+      <div class="story-text">
+        <span class="ch-watermark">02</span>
+        <div class="w-full relative z-10">
+          <p class="font-heading text-gold text-xs tracking-[.22em] uppercase mb-2">Chapter Two</p>
+          <h3 class="font-heading text-warmBrown italic mb-4"
+              style="font-size:clamp(1.8rem,3vw,2.6rem)">First Date</h3>
+          <div class="h-px w-16 mb-4" style="background:linear-gradient(90deg,#C9A84C,transparent)"></div>
+          <p class="font-body text-sm leading-relaxed mb-5" style="color:#7D5A4A">
+            Under the amber glow of a Kerala sunset, they drifted through the Alleppey backwaters sharing stories
+            and dreams. A decorated wooden boat, the fragrance of jasmine, and the lap of water — the world
+            conspired to make that evening unforgettable.
+          </p>
+          <p class="font-heading text-gold italic text-sm">— August 2022, Alleppey</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Chapter 3 — photo LEFT, text RIGHT -->
+    <div class="story-chapter reveal">
+      <div class="story-photo" onclick="openLB(2)">
+        <!--
+          ★ photos/story-3.jpg = embrace in the fields
+        -->
+        <img src="photo/IMG_3642.JPG" alt="The Proposal" loading="lazy"
+             onerror="this.parentElement.style.background='linear-gradient(135deg,#A8C5A0,#FFCBA4)';this.style.display='none'">
+        <div class="inner-frame"></div>
+        <div class="photo-caption">
+          <p class="font-heading italic text-white text-sm opacity-85">Chapter Three · The Proposal</p>
+        </div>
+      </div>
+      <div class="story-text">
+        <span class="ch-watermark">03</span>
+        <div class="w-full relative z-10">
+          <p class="font-heading text-gold text-xs tracking-[.22em] uppercase mb-2">Chapter Three</p>
+          <h3 class="font-heading text-warmBrown italic mb-4"
+              style="font-size:clamp(1.8rem,3vw,2.6rem)">The Proposal</h3>
+          <div class="h-px w-16 mb-4" style="background:linear-gradient(90deg,#C9A84C,transparent)"></div>
+          <p class="font-body text-sm leading-relaxed mb-5" style="color:#7D5A4A">
+            Surrounded by jasmine garlands and the soft golden warmth of nilavilakku lamps at their favourite
+            temple, Midhun Raj got down on one knee. With a heart full to overflowing, he asked the question.
+            Hari Kripa said yes — and the entire world felt it.
+          </p>
+          <p class="font-heading text-gold italic text-sm">— January 2025, Thrissur</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="py-6"></div>
   </section>
 
-  <!-- Wave up into events -->
+  <!-- Wave -->
   <div style="background:#D4E8D4">
     <svg viewBox="0 0 1440 60" preserveAspectRatio="none" style="height:60px;width:100%;display:block">
       <path d="M0,0 C360,60 1080,60 1440,0 L1440,60 L0,60 Z" fill="#FFF8F0"/>
     </svg>
   </div>
 
-  <!-- ═══════════════════════════════════════════
+  <!-- ══════════════════════════════════════════
+       PHOTO GALLERY
+       ★ PHOTO SETUP:
+         photos/gallery-1.jpg  → photo 4 (standing by canal) — spans 2 rows
+         photos/gallery-2.jpg  → your extra photo 2
+         photos/gallery-3.jpg  → your extra photo 3
+         photos/gallery-4.jpg  → your extra photo 4 — spans 2 rows
+         photos/gallery-5.jpg  → your extra photo 5
+         photos/gallery-6.jpg  → your extra photo 6
+
+       Add more .gal-item blocks to extend the grid as needed.
+       The gallery lightbox is shared with story photos (index 0-2 = story, 3+ = gallery).
+  ══════════════════════════════════════════ -->
+  <section id="gallery" class="py-20 px-4 md:px-8" style="background:#FFF8F0">
+    <div class="max-w-6xl mx-auto">
+
+      <!-- Header -->
+      <div class="text-center mb-12 reveal">
+        <p class="font-heading text-gold text-xs tracking-[.3em] uppercase mb-3">Captured moments</p>
+        <h2 class="font-heading font-light text-warmBrown italic mb-4"
+            style="font-size:clamp(2.8rem,7vw,5rem)">Gallery</h2>
+        <div class="flex items-center justify-center gap-3 mb-3">
+          <div class="h-px w-14" style="background:linear-gradient(90deg,transparent,#C9A84C)"></div>
+          <svg width="20" height="18" viewBox="0 0 22 20" fill="none">
+            <rect x="1" y="3" width="20" height="14" rx="2" stroke="#C9A84C" stroke-width="1.3"/>
+            <circle cx="11" cy="10" r="3.5" stroke="#C9A84C" stroke-width="1.3"/>
+            <circle cx="16" cy="6" r="1.2" fill="#C9A84C"/>
+          </svg>
+          <div class="h-px w-14" style="background:linear-gradient(90deg,#C9A84C,transparent)"></div>
+        </div>
+        <p class="font-heading italic text-xs" style="color:#7D5A4A">Click any photo to view full size</p>
+      </div>
+
+      <!-- Grid -->
+      <div class="gallery-grid reveal">
+
+        <!-- Item 1 (spans 2 rows) — boat with parasol -->
+        <div class="gal-item" onclick="openLB(3)">
+          <img src="photo/IMG_3645.JPG" alt="" loading="lazy"
+               onerror="this.parentElement.style.background='#D4E8D4';this.remove()">
+          <div class="gal-overlay">
+            <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
+              <circle cx="18" cy="18" r="16" stroke="rgba(255,255,255,.8)" stroke-width="1.5"/>
+              <path d="M13 18H23M18 13V23" stroke="rgba(255,255,255,.8)" stroke-width="1.8" stroke-linecap="round"/>
+            </svg>
+          </div>
+        </div>
+
+        <!-- Item 2 — misty field embrace -->
+        <div class="gal-item" onclick="openLB(4)">
+          <img src="photo/IMG_3640.JPG" alt="" loading="lazy"
+               onerror="this.parentElement.style.background='#FFE5D0';this.remove()">
+          <div class="gal-overlay">
+            <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
+              <circle cx="18" cy="18" r="16" stroke="rgba(255,255,255,.8)" stroke-width="1.5"/>
+              <path d="M13 18H23M18 13V23" stroke="rgba(255,255,255,.8)" stroke-width="1.8" stroke-linecap="round"/>
+            </svg>
+          </div>
+        </div>
+
+        <!-- Item 3 — facing each other golden hour -->
+        <div class="gal-item" onclick="openLB(5)">
+          <img src="photo/IMG_3633.JPG" alt="" loading="lazy"
+               onerror="this.parentElement.style.background='#D4E8D4';this.remove()">
+          <div class="gal-overlay">
+            <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
+              <circle cx="18" cy="18" r="16" stroke="rgba(255,255,255,.8)" stroke-width="1.5"/>
+              <path d="M13 18H23M18 13V23" stroke="rgba(255,255,255,.8)" stroke-width="1.8" stroke-linecap="round"/>
+            </svg>
+          </div>
+        </div>
+
+        <!-- Item 4 (spans 2 rows) — walking by water -->
+        <div class="gal-item" onclick="openLB(6)">
+          <img src="photo/IMG_3624.JPG" alt="" loading="lazy"
+               onerror="this.parentElement.style.background='#FFEEDD';this.remove()">
+          <div class="gal-overlay">
+            <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
+              <circle cx="18" cy="18" r="16" stroke="rgba(255,255,255,.8)" stroke-width="1.5"/>
+              <path d="M13 18H23M18 13V23" stroke="rgba(255,255,255,.8)" stroke-width="1.8" stroke-linecap="round"/>
+            </svg>
+          </div>
+        </div>
+
+        <!-- Item 5 — classic portrait by water -->
+        <div class="gal-item" onclick="openLB(7)">
+          <img src="photo/IMG_3626.JPG" alt="" loading="lazy"
+               onerror="this.parentElement.style.background='#D4E8D4';this.remove()">
+          <div class="gal-overlay">
+            <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
+              <circle cx="18" cy="18" r="16" stroke="rgba(255,255,255,.8)" stroke-width="1.5"/>
+              <path d="M13 18H23M18 13V23" stroke="rgba(255,255,255,.8)" stroke-width="1.8" stroke-linecap="round"/>
+            </svg>
+          </div>
+        </div>
+
+        <!-- Item 6 — walking into the mist -->
+        <div class="gal-item" onclick="openLB(8)">
+          <img src="photo/IMG_3636.JPG" alt="" loading="lazy"
+               onerror="this.parentElement.style.background='#FFE5D0';this.remove()">
+          <div class="gal-overlay">
+            <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
+              <circle cx="18" cy="18" r="16" stroke="rgba(255,255,255,.8)" stroke-width="1.5"/>
+              <path d="M13 18H23M18 13V23" stroke="rgba(255,255,255,.8)" stroke-width="1.8" stroke-linecap="round"/>
+            </svg>
+          </div>
+        </div>
+
+        <!-- Item 7 — saree flowing, looking at camera -->
+        <div class="gal-item" onclick="openLB(9)">
+          <img src="photo/IMG_3637.JPG" alt="" loading="lazy"
+               onerror="this.parentElement.style.background='#D4E8D4';this.remove()">
+          <div class="gal-overlay">
+            <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
+              <circle cx="18" cy="18" r="16" stroke="rgba(255,255,255,.8)" stroke-width="1.5"/>
+              <path d="M13 18H23M18 13V23" stroke="rgba(255,255,255,.8)" stroke-width="1.8" stroke-linecap="round"/>
+            </svg>
+          </div>
+        </div>
+
+        <!-- Item 8 — embrace in misty field -->
+        <div class="gal-item" onclick="openLB(10)">
+          <img src="photo/IMG_3641.JPG" alt="" loading="lazy"
+               onerror="this.parentElement.style.background='#FFE5D0';this.remove()">
+          <div class="gal-overlay">
+            <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
+              <circle cx="18" cy="18" r="16" stroke="rgba(255,255,255,.8)" stroke-width="1.5"/>
+              <path d="M13 18H23M18 13V23" stroke="rgba(255,255,255,.8)" stroke-width="1.8" stroke-linecap="round"/>
+            </svg>
+          </div>
+        </div>
+
+        <!-- Item 9 — walking and talking, misty morning -->
+        <div class="gal-item" onclick="openLB(11)">
+          <img src="photo/IMG_3643.JPG" alt="" loading="lazy"
+               onerror="this.parentElement.style.background='#D4E8D4';this.remove()">
+          <div class="gal-overlay">
+            <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
+              <circle cx="18" cy="18" r="16" stroke="rgba(255,255,255,.8)" stroke-width="1.5"/>
+              <path d="M13 18H23M18 13V23" stroke="rgba(255,255,255,.8)" stroke-width="1.8" stroke-linecap="round"/>
+            </svg>
+          </div>
+        </div>
+
+      </div><!-- /gallery-grid -->
+    </div>
+  </section>
+
+  <!-- Wave -->
+  <div style="background:#FFF8F0">
+    <svg viewBox="0 0 1440 60" preserveAspectRatio="none" style="height:60px;width:100%;display:block">
+      <path d="M0,30 C360,60 1080,0 1440,30 L1440,60 L0,60 Z" fill="#D4E8D4"/>
+    </svg>
+  </div>
+
+  <!-- ══════════════════════════════════════════
        EVENT DETAILS
-  ═══════════════════════════════════════════ -->
+  ══════════════════════════════════════════ -->
   <section id="events" class="py-20 px-6" style="background:#FFF8F0">
     <div class="max-w-5xl mx-auto">
 
-      <!-- Section header -->
       <div class="text-center mb-14 reveal">
         <p class="font-heading text-gold text-xs tracking-[.3em] uppercase mb-3">Join us to celebrate</p>
         <h2 class="font-heading font-light text-warmBrown italic mb-4"
@@ -603,20 +831,17 @@
         <div class="flex items-center justify-center gap-3">
           <div class="h-px w-14" style="background:linear-gradient(90deg,transparent,#C9A84C)"></div>
           <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
-            <path d="M11 1L13.5 8.5L22 11L13.5 13.5L11 21L8.5 13.5L0 11L8.5 8.5Z"
-                  fill="#C9A84C" opacity=".7"/>
+            <path d="M11 1L13.5 8.5L22 11L13.5 13.5L11 21L8.5 13.5L0 11L8.5 8.5Z" fill="#C9A84C" opacity=".7"/>
           </svg>
           <div class="h-px w-14" style="background:linear-gradient(90deg,#C9A84C,transparent)"></div>
         </div>
       </div>
 
-      <!-- Cards -->
       <div class="grid md:grid-cols-2 gap-8 mb-10">
 
-        <!-- ── Muhurtham ── -->
+        <!-- Muhurtham -->
         <div class="event-card border-2 p-8 relative overflow-hidden reveal"
              style="border-color:#C9A84C;background:linear-gradient(135deg,#FFFAF5,#FFF0DD)">
-          <!-- Corner marks -->
           <svg class="absolute top-2 left-2 w-6 h-6" viewBox="0 0 24 24" fill="none">
             <path d="M1 24 C1 12 12 1 24 1" stroke="#C9A84C" stroke-width="1.4" fill="none"/>
           </svg>
@@ -629,74 +854,53 @@
           <svg class="absolute bottom-2 right-2 w-6 h-6" viewBox="0 0 24 24" fill="none" style="transform:scale(-1)">
             <path d="M1 24 C1 12 12 1 24 1" stroke="#C9A84C" stroke-width="1.4" fill="none"/>
           </svg>
-
           <div class="text-center pt-2">
-            <!-- Icon -->
             <div class="w-16 h-16 mx-auto mb-4 rounded-full flex items-center justify-center"
                  style="background:linear-gradient(135deg,#FFE5D0,#FFCBA4)">
-              <svg width="34" height="40" viewBox="0 0 34 44" fill="none">
-                <!-- lamp flame -->
+              <svg width="34" height="44" viewBox="0 0 34 44" fill="none">
                 <path class="flame" d="M17 14 C15 9 13.5 5 17 1 C20.5 5 19 9 17 14Z" fill="#F0A040"/>
                 <ellipse cx="17" cy="16" rx="6" ry="2.5" fill="#C9A84C"/>
-                <path d="M11 16 C11 20 8 24 8 28 C8 32 12 34 17 34 C22 34 26 32 26 28 C26 24 23 20 23 16Z"
-                      fill="#C9A84C"/>
+                <path d="M11 16 C11 20 8 24 8 28 C8 32 12 34 17 34 C22 34 26 32 26 28 C26 24 23 20 23 16Z" fill="#C9A84C"/>
                 <rect x="14.5" y="34" width="5" height="6" fill="#C9A84C"/>
                 <ellipse cx="17" cy="42" rx="10" ry="2.5" fill="#C9A84C"/>
               </svg>
             </div>
             <p class="font-heading text-gold text-xs tracking-[.22em] uppercase mb-1">The Sacred Ceremony</p>
             <h3 class="font-heading text-warmBrown text-3xl italic mb-6">Muhurtham</h3>
-
             <div class="space-y-4 text-left">
-              <!-- Date row -->
               <div class="flex items-start gap-3">
-                <div class="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0"
-                     style="background:rgba(201,168,76,.1)">
-                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-                    <rect x="1" y="2" width="12" height="11" rx="1" stroke="#C9A84C" stroke-width="1.2"/>
-                    <path d="M4 1V3M10 1V3M1 6H13" stroke="#C9A84C" stroke-width="1.2" stroke-linecap="round"/>
-                  </svg>
+                <div class="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0" style="background:rgba(201,168,76,.1)">
+                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><rect x="1" y="2" width="12" height="11" rx="1" stroke="#C9A84C" stroke-width="1.2"/><path d="M4 1V3M10 1V3M1 6H13" stroke="#C9A84C" stroke-width="1.2" stroke-linecap="round"/></svg>
                 </div>
                 <div>
                   <p class="font-body text-[10px] text-sage-dark tracking-[.2em] uppercase">Date</p>
-                  <p class="font-heading text-warmBrown text-base">Friday, 19 December 2025</p>
+                  <p class="font-heading text-warmBrown text-base">Monday, 20 April 2026</p>
                 </div>
               </div>
-              <!-- Time row -->
               <div class="flex items-start gap-3">
-                <div class="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0"
-                     style="background:rgba(201,168,76,.1)">
-                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-                    <circle cx="7" cy="7" r="6" stroke="#C9A84C" stroke-width="1.2"/>
-                    <path d="M7 4V7L9.5 9.5" stroke="#C9A84C" stroke-width="1.2" stroke-linecap="round"/>
-                  </svg>
+                <div class="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0" style="background:rgba(201,168,76,.1)">
+                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="6" stroke="#C9A84C" stroke-width="1.2"/><path d="M7 4V7L9.5 9.5" stroke="#C9A84C" stroke-width="1.2" stroke-linecap="round"/></svg>
                 </div>
                 <div>
                   <p class="font-body text-[10px] text-sage-dark tracking-[.2em] uppercase">Muhurtham Time</p>
                   <p class="font-heading text-warmBrown text-base">9:47 AM — Auspicious Hour</p>
                 </div>
               </div>
-              <!-- Venue row -->
               <div class="flex items-start gap-3">
-                <div class="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0"
-                     style="background:rgba(201,168,76,.1)">
-                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-                    <path d="M7 1C4.24 1 2 3.24 2 6C2 9.5 7 13 7 13C7 13 12 9.5 12 6C12 3.24 9.76 1 7 1Z"
-                          stroke="#C9A84C" stroke-width="1.2"/>
-                    <circle cx="7" cy="6" r="1.5" fill="#C9A84C"/>
-                  </svg>
+                <div class="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0" style="background:rgba(201,168,76,.1)">
+                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 1C4.24 1 2 3.24 2 6C2 9.5 7 13 7 13C7 13 12 9.5 12 6C12 3.24 9.76 1 7 1Z" stroke="#C9A84C" stroke-width="1.2"/><circle cx="7" cy="6" r="1.5" fill="#C9A84C"/></svg>
                 </div>
                 <div>
                   <p class="font-body text-[10px] text-sage-dark tracking-[.2em] uppercase">Venue</p>
-                  <p class="font-heading text-warmBrown text-base">Sree Rama Kalyana Mandapam</p>
-                  <p class="font-body text-warmBrown-light text-xs" style="color:#7D5A4A">East Nada, Thrissur, Kerala 680001</p>
+                  <p class="font-heading text-warmBrown text-base">Kundamkuzhi Temple</p>
+                  <p class="font-body text-xs" style="color:#7D5A4A">Kundamkuzhy Sri Panchalingeshwara Temple</p>
                 </div>
               </div>
             </div>
           </div>
         </div>
 
-        <!-- ── Sadhya & Reception ── -->
+        <!-- Sadhya & Reception -->
         <div class="event-card border-2 p-8 relative overflow-hidden reveal"
              style="border-color:#8FAF8F;background:linear-gradient(135deg,#F5FFF5,#EEF8EE)">
           <svg class="absolute top-2 left-2 w-6 h-6" viewBox="0 0 24 24" fill="none">
@@ -711,41 +915,29 @@
           <svg class="absolute bottom-2 right-2 w-6 h-6" viewBox="0 0 24 24" fill="none" style="transform:scale(-1)">
             <path d="M1 24 C1 12 12 1 24 1" stroke="#8FAF8F" stroke-width="1.4" fill="none"/>
           </svg>
-
           <div class="text-center pt-2">
-            <!-- Banana-leaf icon -->
             <div class="w-16 h-16 mx-auto mb-4 rounded-full flex items-center justify-center"
                  style="background:linear-gradient(135deg,#C5DBC5,#A8C5A0)">
               <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
-                <path d="M4 34 C4 34 10 18 18 10 C26 2 34 6 34 6 C34 6 32 14 24 22 C16 30 4 34 4 34Z"
-                      fill="#5C8060" opacity=".85"/>
+                <path d="M4 34 C4 34 10 18 18 10 C26 2 34 6 34 6 C34 6 32 14 24 22 C16 30 4 34 4 34Z" fill="#5C8060" opacity=".85"/>
                 <path d="M18 10 C18 10 14 20 8 28" stroke="#A8C5A0" stroke-width="1.2" stroke-linecap="round"/>
               </svg>
             </div>
             <p class="font-heading text-sage-dark text-xs tracking-[.22em] uppercase mb-1">The Grand Feast</p>
             <h3 class="font-heading text-warmBrown text-3xl italic mb-6">Sadhya & Reception</h3>
-
             <div class="space-y-4 text-left">
               <div class="flex items-start gap-3">
-                <div class="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0"
-                     style="background:rgba(143,175,143,.15)">
-                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-                    <rect x="1" y="2" width="12" height="11" rx="1" stroke="#8FAF8F" stroke-width="1.2"/>
-                    <path d="M4 1V3M10 1V3M1 6H13" stroke="#8FAF8F" stroke-width="1.2" stroke-linecap="round"/>
-                  </svg>
+                <div class="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0" style="background:rgba(143,175,143,.15)">
+                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><rect x="1" y="2" width="12" height="11" rx="1" stroke="#8FAF8F" stroke-width="1.2"/><path d="M4 1V3M10 1V3M1 6H13" stroke="#8FAF8F" stroke-width="1.2" stroke-linecap="round"/></svg>
                 </div>
                 <div>
                   <p class="font-body text-[10px] text-sage-dark tracking-[.2em] uppercase">Date</p>
-                  <p class="font-heading text-warmBrown text-base">Friday, 19 December 2025</p>
+                  <p class="font-heading text-warmBrown text-base">Monday, 20 April 2026</p>
                 </div>
               </div>
               <div class="flex items-start gap-3">
-                <div class="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0"
-                     style="background:rgba(143,175,143,.15)">
-                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-                    <circle cx="7" cy="7" r="6" stroke="#8FAF8F" stroke-width="1.2"/>
-                    <path d="M7 4V7L9.5 9.5" stroke="#8FAF8F" stroke-width="1.2" stroke-linecap="round"/>
-                  </svg>
+                <div class="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0" style="background:rgba(143,175,143,.15)">
+                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="6" stroke="#8FAF8F" stroke-width="1.2"/><path d="M7 4V7L9.5 9.5" stroke="#8FAF8F" stroke-width="1.2" stroke-linecap="round"/></svg>
                 </div>
                 <div>
                   <p class="font-body text-[10px] text-sage-dark tracking-[.2em] uppercase">Time</p>
@@ -753,18 +945,13 @@
                 </div>
               </div>
               <div class="flex items-start gap-3">
-                <div class="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0"
-                     style="background:rgba(143,175,143,.15)">
-                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-                    <path d="M7 1C4.24 1 2 3.24 2 6C2 9.5 7 13 7 13C7 13 12 9.5 12 6C12 3.24 9.76 1 7 1Z"
-                          stroke="#8FAF8F" stroke-width="1.2"/>
-                    <circle cx="7" cy="6" r="1.5" fill="#8FAF8F"/>
-                  </svg>
+                <div class="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0" style="background:rgba(143,175,143,.15)">
+                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 1C4.24 1 2 3.24 2 6C2 9.5 7 13 7 13C7 13 12 9.5 12 6C12 3.24 9.76 1 7 1Z" stroke="#8FAF8F" stroke-width="1.2"/><circle cx="7" cy="6" r="1.5" fill="#8FAF8F"/></svg>
                 </div>
                 <div>
                   <p class="font-body text-[10px] text-sage-dark tracking-[.2em] uppercase">Venue</p>
-                  <p class="font-heading text-warmBrown text-base">Sree Rama Kalyana Mandapam</p>
-                  <p class="font-body text-xs" style="color:#7D5A4A">East Nada, Thrissur, Kerala 680001</p>
+                  <p class="font-heading text-warmBrown text-base">Kundamkuzhi Temple</p>
+                  <p class="font-body text-xs" style="color:#7D5A4A">Kundamkuzhy Sri Panchalingeshwara Temple</p>
                 </div>
               </div>
             </div>
@@ -781,9 +968,9 @@
     </div>
   </section>
 
-  <!-- ═══════════════════════════════════════════
+  <!-- ══════════════════════════════════════════
        VENUE / MAP
-  ═══════════════════════════════════════════ -->
+  ══════════════════════════════════════════ -->
   <section id="venue" class="py-20 px-6" style="background:#FFF8F0">
     <div class="max-w-5xl mx-auto">
 
@@ -794,8 +981,7 @@
         <div class="flex items-center justify-center gap-3">
           <div class="h-px w-14" style="background:linear-gradient(90deg,transparent,#C9A84C)"></div>
           <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-            <path d="M10 1C6.13 1 3 4.13 3 8C3 13.25 10 19 10 19C10 19 17 13.25 17 8C17 4.13 13.87 1 10 1Z"
-                  stroke="#C9A84C" stroke-width="1.5" fill="rgba(201,168,76,.1)"/>
+            <path d="M10 1C6.13 1 3 4.13 3 8C3 13.25 10 19 10 19C10 19 17 13.25 17 8C17 4.13 13.87 1 10 1Z" stroke="#C9A84C" stroke-width="1.5" fill="rgba(201,168,76,.1)"/>
             <circle cx="10" cy="8" r="2.5" fill="#C9A84C"/>
           </svg>
           <div class="h-px w-14" style="background:linear-gradient(90deg,#C9A84C,transparent)"></div>
@@ -803,57 +989,45 @@
       </div>
 
       <div class="reveal">
-        <!-- Info bar -->
         <div class="flex flex-col sm:flex-row items-center justify-between gap-4 px-5 py-4 rounded-t-xl"
              style="background:linear-gradient(135deg,#FFE5D0,#FFCBA4)">
           <div>
-            <p class="font-heading text-warmBrown text-xl italic">Sree Rama Kalyana Mandapam</p>
-            <p class="font-body text-sm" style="color:#7D5A4A">East Nada, Thrissur, Kerala 680001</p>
+            <p class="font-heading text-warmBrown text-xl italic">Kundamkuzhi Temple</p>
+            <p class="font-body text-sm" style="color:#7D5A4A">Kundamkuzhy Sri Panchalingeshwara Temple</p>
           </div>
           <!--
-            ★ Replace the href below with the actual Google Maps link for your venue.
-              Go to maps.google.com, search your venue, click Share → Copy link.
+            ★ Replace href with the actual Google Maps share link for your venue
           -->
-          <a href="https://maps.google.com/?q=Thrissur+Kerala"
+          <a href="https://maps.google.com/?q=Kundamkuzhy+Sri+Panchalingeshwara+Temple"
              target="_blank" rel="noopener noreferrer"
-             class="flex items-center gap-2 px-5 py-2 rounded-full text-xs font-body tracking-widest uppercase
-                    border border-warmBrown text-warmBrown hover:bg-warmBrown hover:text-white transition-all duration-300 whitespace-nowrap">
+             class="flex items-center gap-2 px-5 py-2 rounded-full text-xs font-body tracking-widest uppercase border border-warmBrown text-warmBrown hover:bg-warmBrown hover:text-white transition-all duration-300 whitespace-nowrap">
             <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
-              <path d="M6 1C3.8 1 2 2.8 2 5C2 7.7 6 11 6 11C6 11 10 7.7 10 5C10 2.8 8.2 1 6 1Z"
-                    stroke="currentColor" stroke-width="1.2"/>
+              <path d="M6 1C3.8 1 2 2.8 2 5C2 7.7 6 11 6 11C6 11 10 7.7 10 5C10 2.8 8.2 1 6 1Z" stroke="currentColor" stroke-width="1.2"/>
               <circle cx="6" cy="5" r="1.3" fill="currentColor"/>
             </svg>
             Open in Maps
           </a>
         </div>
-
-        <!-- Map embed -->
         <!--
-          ★ To embed YOUR venue:
-          1. Go to maps.google.com
-          2. Search your venue
-          3. Click Share → Embed a map → Copy HTML
-          4. Paste the iframe src below (replace the entire src value)
+          ★ REPLACE iframe src with your venue's Google Maps embed:
+            1. maps.google.com → search venue → Share → Embed a map → copy src value
         -->
         <div class="rounded-b-xl overflow-hidden shadow-xl" style="height:420px;border:2px solid #FFCBA4;border-top:none">
           <iframe
-            src="https://maps.google.com/maps?q=Thrissur,Kerala,India&output=embed"
-            width="100%"
-            height="100%"
-            style="border:0"
-            allowfullscreen=""
-            loading="lazy"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d243143.84890867592!2d74.84818390902072!3d12.483276977675796!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba486166a1e259d%3A0x2de9be76ae61c335!2sKundamkuzhy%20Sri%20Panchalingeshwara%20Temple!5e1!3m2!1sen!2sin!4v1776356217320!5m2!1sen!2sin"
+            width="100%" height="100%" style="border:0"
+            allowfullscreen="" loading="lazy"
             referrerpolicy="no-referrer-when-downgrade"
-            title="Wedding Venue — Thrissur, Kerala">
+            title="Wedding Venue">
           </iframe>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ═══════════════════════════════════════════
+  <!-- ══════════════════════════════════════════
        RSVP
-  ═══════════════════════════════════════════ -->
+  ══════════════════════════════════════════ -->
   <section id="rsvp" class="py-20 px-6 relative overflow-hidden"
            style="background:linear-gradient(160deg,#FFF0E0 0%,#FFF8F0 50%,#F0FFF5 100%)">
 
@@ -873,12 +1047,11 @@
     </div>
 
     <div class="max-w-lg mx-auto relative z-10">
-
       <div class="text-center mb-12 reveal">
         <p class="font-heading text-gold text-xs tracking-[.3em] uppercase mb-3">Will you join us?</p>
         <h2 class="font-heading font-light text-warmBrown italic mb-2"
             style="font-size:clamp(2.8rem,7vw,5rem)">RSVP</h2>
-        <p class="font-heading italic text-base" style="color:#7D5A4A">Please respond by 5 December 2025</p>
+        <p class="font-heading italic text-base" style="color:#7D5A4A">Please respond by 10 April 2026</p>
         <div class="flex items-center justify-center gap-3 mt-4">
           <div class="h-px w-14" style="background:linear-gradient(90deg,transparent,#C9A84C)"></div>
           <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
@@ -888,63 +1061,32 @@
         </div>
       </div>
 
-      <!-- Form card -->
       <div class="reveal bg-white bg-opacity-75 p-8 md:p-10 shadow-2xl"
            style="backdrop-filter:blur(14px);border:1px solid rgba(201,168,76,.28)">
-
         <form id="rsvp-form" onsubmit="handleRSVP(event)" novalidate>
           <div class="space-y-6">
-
-            <!-- Full name -->
             <div>
-              <label class="block font-body text-[10px] tracking-[.22em] uppercase text-sage-dark mb-2">
-                Full Name <span class="text-peach-dark">*</span>
-              </label>
-              <input type="text" name="name" required placeholder="e.g. Ravi Menon"
-                     class="f-input">
+              <label class="block font-body text-[10px] tracking-[.22em] uppercase text-sage-dark mb-2">Full Name <span class="text-peach-dark">*</span></label>
+              <input type="text" name="name" required placeholder="e.g. Ravi Menon" class="f-input">
             </div>
-
-            <!-- Email -->
             <div>
-              <label class="block font-body text-[10px] tracking-[.22em] uppercase text-sage-dark mb-2">
-                Email Address <span class="text-peach-dark">*</span>
-              </label>
-              <input type="email" name="email" required placeholder="your@email.com"
-                     class="f-input">
+              <label class="block font-body text-[10px] tracking-[.22em] uppercase text-sage-dark mb-2">Email Address <span class="text-peach-dark">*</span></label>
+              <input type="email" name="email" required placeholder="your@email.com" class="f-input">
             </div>
-
-            <!-- Phone -->
             <div>
-              <label class="block font-body text-[10px] tracking-[.22em] uppercase text-sage-dark mb-2">
-                Phone Number
-              </label>
-              <input type="tel" name="phone" placeholder="+91 98765 43210"
-                     class="f-input">
+              <label class="block font-body text-[10px] tracking-[.22em] uppercase text-sage-dark mb-2">Phone Number</label>
+              <input type="tel" name="phone" placeholder="+91 98765 43210" class="f-input">
             </div>
-
-            <!-- Attending? -->
             <div>
-              <label class="block font-body text-[10px] tracking-[.22em] uppercase text-sage-dark mb-3">
-                Will you be attending? <span class="text-peach-dark">*</span>
-              </label>
+              <label class="block font-body text-[10px] tracking-[.22em] uppercase text-sage-dark mb-3">Will you be attending? <span class="text-peach-dark">*</span></label>
               <div class="grid grid-cols-2 gap-3">
-                <div class="choice-pill text-center py-3 font-heading text-base rounded-none"
-                     id="pill-yes" onclick="selectAttending('yes')">
-                  Joyfully Accept
-                </div>
-                <div class="choice-pill text-center py-3 font-heading text-base rounded-none"
-                     id="pill-no" onclick="selectAttending('no')">
-                  Regretfully Decline
-                </div>
+                <div class="choice-pill text-center py-3 font-heading text-base" id="pill-yes" onclick="selectAttending('yes')">Joyfully Accept</div>
+                <div class="choice-pill text-center py-3 font-heading text-base" id="pill-no"  onclick="selectAttending('no')">Regretfully Decline</div>
               </div>
               <input type="hidden" name="attending" id="attending-val">
             </div>
-
-            <!-- Events checkboxes -->
             <div>
-              <label class="block font-body text-[10px] tracking-[.22em] uppercase text-sage-dark mb-3">
-                Events Attending
-              </label>
+              <label class="block font-body text-[10px] tracking-[.22em] uppercase text-sage-dark mb-3">Events Attending</label>
               <div class="space-y-3">
                 <label class="flex items-center gap-3 cursor-pointer" onclick="toggleCB(this)">
                   <div class="cb-box checked" id="cb-muhurtham">
@@ -966,58 +1108,37 @@
                 </label>
               </div>
             </div>
-
-            <!-- Guest count -->
             <div>
-              <label class="block font-body text-[10px] tracking-[.22em] uppercase text-sage-dark mb-2">
-                Guests (including yourself)
-              </label>
+              <label class="block font-body text-[10px] tracking-[.22em] uppercase text-sage-dark mb-2">Guests (including yourself)</label>
               <div class="flex items-center gap-3">
                 <button type="button" onclick="adjustGuests(-1)"
                         class="w-10 h-10 border text-lg font-heading text-gold-dark hover:bg-gold hover:text-white transition-all duration-300 flex items-center justify-center"
                         style="border-color:rgba(201,168,76,.45)">−</button>
-                <input type="number" id="guest-count" name="guests" value="2" min="1" max="20" readonly
-                       class="f-input text-center" style="width:5rem">
+                <input type="number" id="guest-count" name="guests" value="2" min="1" max="20" readonly class="f-input text-center" style="width:5rem">
                 <button type="button" onclick="adjustGuests(1)"
                         class="w-10 h-10 border text-lg font-heading text-gold-dark hover:bg-gold hover:text-white transition-all duration-300 flex items-center justify-center"
                         style="border-color:rgba(201,168,76,.45)">+</button>
               </div>
             </div>
-
-            <!-- Dietary -->
             <div>
-              <label class="block font-body text-[10px] tracking-[.22em] uppercase text-sage-dark mb-2">
-                Dietary Notes (Optional)
-              </label>
-              <textarea name="dietary" rows="2" placeholder="Any dietary restrictions or allergies..."
-                        class="f-input resize-none"></textarea>
+              <label class="block font-body text-[10px] tracking-[.22em] uppercase text-sage-dark mb-2">Dietary Notes (Optional)</label>
+              <textarea name="dietary" rows="2" placeholder="Any dietary restrictions or allergies..." class="f-input resize-none"></textarea>
             </div>
-
-            <!-- Message -->
             <div>
-              <label class="block font-body text-[10px] tracking-[.22em] uppercase text-sage-dark mb-2">
-                A Note for the Couple (Optional)
-              </label>
-              <textarea name="message" rows="3" placeholder="Share your blessings and warm wishes..."
-                        class="f-input resize-none"></textarea>
+              <label class="block font-body text-[10px] tracking-[.22em] uppercase text-sage-dark mb-2">A Note for the Couple (Optional)</label>
+              <textarea name="message" rows="3" placeholder="Share your blessings and warm wishes..." class="f-input resize-none"></textarea>
             </div>
-
-            <!-- Submit -->
-            <button type="submit"
-                    class="btn-gold w-full py-4 font-body tracking-[.3em] uppercase text-sm">
+            <button type="submit" class="btn-gold w-full py-4 font-body tracking-[.3em] uppercase text-sm">
               Send My RSVP
             </button>
-
-            <!-- Validation message -->
             <p id="form-err" class="hidden text-center font-body text-xs text-peach-dark tracking-wide">
               Please fill in all required fields and select your attendance.
             </p>
           </div>
         </form>
 
-        <!-- Success state -->
         <div id="rsvp-success" class="hidden text-center py-8">
-          <div class="w-18 h-18 mx-auto mb-5 rounded-full flex items-center justify-center"
+          <div class="mx-auto mb-5 rounded-full flex items-center justify-center"
                style="width:4.5rem;height:4.5rem;background:linear-gradient(135deg,#C5DBC5,#8FAF8F)">
             <svg width="28" height="22" viewBox="0 0 28 22" fill="none">
               <path d="M2 11L9 18L26 2" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
@@ -1028,85 +1149,66 @@
             Your RSVP has been received.<br>We cannot wait to celebrate with you!
           </p>
           <div class="flex items-center justify-center gap-2 mt-5">
-            <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-              <path d="M7 0L8.5 5H14L9.5 8L11 13L7 10L3 13L4.5 8L0 5H5.5Z" fill="#C9A84C"/>
-            </svg>
-            <p class="font-heading italic text-gold text-base">With love, Priya &amp; Arjun</p>
-            <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-              <path d="M7 0L8.5 5H14L9.5 8L11 13L7 10L3 13L4.5 8L0 5H5.5Z" fill="#C9A84C"/>
-            </svg>
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 0L8.5 5H14L9.5 8L11 13L7 10L3 13L4.5 8L0 5H5.5Z" fill="#C9A84C"/></svg>
+            <p class="font-heading italic text-gold text-base">With love, Hari Kripa &amp; Midhun Raj</p>
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 0L8.5 5H14L9.5 8L11 13L7 10L3 13L4.5 8L0 5H5.5Z" fill="#C9A84C"/></svg>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ═══════════════════════════════════════════
+  <!-- ══════════════════════════════════════════
        FOOTER
-  ═══════════════════════════════════════════ -->
+  ══════════════════════════════════════════ -->
   <footer class="py-14 px-6 text-center relative overflow-hidden" style="background:#3D2B1F">
-    <!-- Top gold rule -->
     <div class="absolute top-0 inset-x-0 h-[3px]"
          style="background:linear-gradient(90deg,transparent,#C9A84C,#F0D060,#C9A84C,transparent)"></div>
-
-    <!-- Faint palm watermark -->
-    <div class="absolute -right-10 bottom-0 opacity-[.06] pointer-events-none w-48">
+    <div class="absolute -right-8 bottom-0 opacity-[.06] pointer-events-none w-44">
       <svg viewBox="0 0 180 480" fill="none">
-        <path d="M90 480 C87 440 84 390 90 330 C96 270 92 210 88 155 C84 105 88 65 90 30"
-              stroke="#C9A84C" stroke-width="14" stroke-linecap="round"/>
+        <path d="M90 480 C87 440 84 390 90 330 C96 270 92 210 88 155 C84 105 88 65 90 30" stroke="#C9A84C" stroke-width="14" stroke-linecap="round"/>
         <path d="M90 50 C65 35 25 28 2 12 C42 28 78 44 90 50Z" fill="#C9A84C"/>
         <path d="M90 50 C115 30 155 18 178 2 C140 22 108 40 90 50Z" fill="#C9A84C"/>
         <path d="M90 50 C80 22 88 5 98 -5 C96 18 92 36 90 50Z" fill="#C9A84C"/>
       </svg>
     </div>
-
-    <!-- Lotus -->
     <div class="flex items-center justify-center gap-4 mb-6">
       <div class="h-px flex-1 max-w-28" style="background:linear-gradient(90deg,transparent,rgba(201,168,76,.4))"></div>
       <svg width="36" height="30" viewBox="0 0 38 30" fill="none">
-        <path d="M19 29C19 29 8 21 8 13C8 6.4 12.5 2 19 2C25.5 2 30 6.4 30 13C30 21 19 29 19 29Z"
-              fill="#C9A84C" opacity=".35"/>
-        <path d="M19 29C15 24 4 22 2 14C0 8 4.5 2 11 4C14.5 5.5 17 11 19 15C21 11 23.5 5.5 27 4C33.5 2 38 8 36 14C34 22 23 24 19 29Z"
-              fill="#C9A84C" opacity=".25"/>
+        <path d="M19 29C19 29 8 21 8 13C8 6.4 12.5 2 19 2C25.5 2 30 6.4 30 13C30 21 19 29 19 29Z" fill="#C9A84C" opacity=".35"/>
+        <path d="M19 29C15 24 4 22 2 14C0 8 4.5 2 11 4C14.5 5.5 17 11 19 15C21 11 23.5 5.5 27 4C33.5 2 38 8 36 14C34 22 23 24 19 29Z" fill="#C9A84C" opacity=".25"/>
         <circle cx="19" cy="14" r="3.5" fill="#C9A84C" opacity=".6"/>
       </svg>
       <div class="h-px flex-1 max-w-28" style="background:linear-gradient(90deg,rgba(201,168,76,.4),transparent)"></div>
     </div>
-
     <h2 class="font-heading italic mb-2 gold-shimmer" style="font-size:clamp(2.2rem,6vw,4rem)">
-      Priya &amp; Arjun
+      Hari Kripa &amp; Midhun Raj
     </h2>
     <p class="font-body text-sm tracking-widest mb-5" style="color:#FFCBA4">
-      December 19, 2025 &middot; Thrissur, Kerala
+      April 20, 2026 &middot; Kundamkuzhi Temple
     </p>
-
     <p class="font-heading italic text-base md:text-lg mb-2" style="color:rgba(240,208,96,.65)">
       "Two souls, one heart — forever bound by love and Kerala's grace"
     </p>
-
-    <!-- Heart divider -->
     <div class="flex items-center justify-center gap-3 mt-6 mb-5">
       <div class="h-px flex-1 max-w-20" style="background:rgba(201,168,76,.2)"></div>
       <svg width="16" height="14" viewBox="0 0 16 14" fill="none">
-        <path d="M8 13C8 13 1 8.5 1 4.5C1 2.3 2.7 1 4.5 1C6 1 7 2 8 3.5C9 2 10 1 11.5 1C13.3 1 15 2.3 15 4.5C15 8.5 8 13 8 13Z"
-              fill="#C9A84C" opacity=".55"/>
+        <path d="M8 13C8 13 1 8.5 1 4.5C1 2.3 2.7 1 4.5 1C6 1 7 2 8 3.5C9 2 10 1 11.5 1C13.3 1 15 2.3 15 4.5C15 8.5 8 13 8 13Z" fill="#C9A84C" opacity=".55"/>
       </svg>
       <div class="h-px flex-1 max-w-20" style="background:rgba(201,168,76,.2)"></div>
     </div>
-
     <p class="font-body text-[10px] tracking-widest" style="color:rgba(255,255,255,.2)">
       Crafted with love for our special day
     </p>
   </footer>
 
-  <!-- ═══════════════════════════════════════════
+  <!-- ══════════════════════════════════════════
        JAVASCRIPT
-  ═══════════════════════════════════════════ -->
+  ══════════════════════════════════════════ -->
   <script>
-    // ── COUNTDOWN ──────────────────────────────────
-    // Change this to your actual wedding date/time
-    const WEDDING_DATE = new Date(2025, 11, 19, 9, 47, 0); // Dec 19 2025, 9:47 AM
-
+    // ── COUNTDOWN ──────────────────────────────────────────────────
+    // ★ Change this date/time to your actual wedding muhurtham
+    const WEDDING_DATE = new Date(2026, 3, 20, 11, 0, 0);
     function tick() {
       const diff = WEDDING_DATE - new Date();
       if (diff <= 0) {
@@ -1119,46 +1221,40 @@
       document.getElementById('cd-m').textContent = pad(Math.floor((diff % 3600000) / 60000));
       document.getElementById('cd-s').textContent = pad(Math.floor((diff % 60000) / 1000));
     }
-    tick();
-    setInterval(tick, 1000);
+    tick(); setInterval(tick, 1000);
 
-    // ── NAVBAR ─────────────────────────────────────
+    // ── NAVBAR ─────────────────────────────────────────────────────
     const navbar  = document.getElementById('navbar');
     const navLogo = document.getElementById('nav-logo');
     window.addEventListener('scroll', () => {
-      if (window.scrollY > 80) {
-        navbar.style.cssText += ';background:rgba(255,248,240,.94);backdrop-filter:blur(14px);box-shadow:0 2px 20px rgba(201,168,76,.1);padding-top:.6rem;padding-bottom:.6rem';
-        navLogo.style.opacity = '1';
-      } else {
-        navbar.style.background = 'transparent';
-        navbar.style.backdropFilter = 'none';
-        navbar.style.boxShadow = 'none';
-        navbar.style.paddingTop = '1rem';
-        navbar.style.paddingBottom = '1rem';
-        navLogo.style.opacity = '0';
-      }
-    }, { passive: true });
+      const scrolled = window.scrollY > 60;
+      navbar.style.background    = scrolled ? 'rgba(255,248,240,.95)' : 'transparent';
+      navbar.style.backdropFilter= scrolled ? 'blur(14px)' : 'none';
+      navbar.style.boxShadow     = scrolled ? '0 2px 20px rgba(201,168,76,.1)' : 'none';
+      navbar.style.paddingTop    = scrolled ? '.6rem' : '1rem';
+      navbar.style.paddingBottom = scrolled ? '.6rem' : '1rem';
+      navLogo.style.opacity      = scrolled ? '1' : '0';
+    }, { passive:true });
 
-    // ── SCROLL REVEAL ──────────────────────────────
+    // ── SCROLL REVEAL ──────────────────────────────────────────────
     const revealObs = new IntersectionObserver((entries) => {
       entries.forEach((entry, i) => {
         if (entry.isIntersecting) {
-          setTimeout(() => entry.target.classList.add('visible'), i * 90);
+          setTimeout(() => entry.target.classList.add('visible'), i * 80);
           revealObs.unobserve(entry.target);
         }
       });
-    }, { threshold: 0.1 });
+    }, { threshold:0.08 });
     document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
 
-    // ── FLOATING PETALS ────────────────────────────
+    // ── FLOATING PETALS ────────────────────────────────────────────
     const PETALS = [
       `<svg width="14" height="18" viewBox="0 0 14 18" fill="none"><path d="M7 18C7 18 0 12 0 7C0 3.1 3.1 0 7 0C10.9 0 14 3.1 14 7C14 12 7 18 7 18Z" fill="#FFCBA4" opacity=".65"/></svg>`,
       `<svg width="11" height="11" viewBox="0 0 11 11" fill="none"><path d="M5.5 11C5.5 11 0 8 0 4.5C0 2 2 0 4.5 0C4.5 0 4.5 2.5 5.5 5.5C6.5 2.5 6.5 0 6.5 0C9 0 11 2 11 4.5C11 8 5.5 11 5.5 11Z" fill="#D4E8D4" opacity=".7"/></svg>`,
       `<svg width="9" height="9" viewBox="0 0 9 9" fill="none"><path d="M4.5 0L5.8 3.7L9 4.5L5.8 5.3L4.5 9L3.2 5.3L0 4.5L3.2 3.7Z" fill="#C9A84C" opacity=".4"/></svg>`,
       `<svg width="10" height="13" viewBox="0 0 10 13" fill="none"><path d="M5 13C5 13 0 9 0 5C0 2.2 2.2 0 5 0C7.8 0 10 2.2 10 5C10 9 5 13 5 13Z" fill="#E8956D" opacity=".5"/></svg>`,
     ];
-    const wrap = document.getElementById('petal-wrap');
-
+    const petalWrap = document.getElementById('petal-wrap');
     function spawnPetal() {
       const el = document.createElement('div');
       el.classList.add('petal');
@@ -1167,13 +1263,68 @@
       el.style.left = (Math.random() * 100) + 'vw';
       el.style.animationDuration = dur + 's';
       el.style.animationDelay = (Math.random() * 6) + 's';
-      wrap.appendChild(el);
+      petalWrap.appendChild(el);
       setTimeout(() => el.remove(), (dur + 6) * 1000);
     }
     for (let i = 0; i < 6; i++) spawnPetal();
-    setInterval(spawnPetal, 2200);
+    setInterval(spawnPetal, 2400);
 
-    // ── RSVP — RADIO PILLS ─────────────────────────
+    // ── LIGHTBOX ───────────────────────────────────────────────────
+    // All photos available in lightbox:
+    // index 0-2 = story photos, 3+ = gallery photos
+    const LB_PHOTOS = [
+      'photo/IMG_3631.JPG',
+      'photo/IMG_3644.JPG',
+      'photo/IMG_3642.JPG',
+      'photo/IMG_3645.JPG',
+      'photo/IMG_3640.JPG',
+      'photo/IMG_3633.JPG',
+      'photo/IMG_3624.JPG',
+      'photo/IMG_3626.JPG',
+      'photo/IMG_3636.JPG',
+      'photo/IMG_3637.JPG',
+      'photo/IMG_3641.JPG',
+      'photo/IMG_3643.JPG',
+    ];
+    let lbIndex = 0;
+    const lb     = document.getElementById('lightbox');
+    const lbImg  = document.getElementById('lb-img');
+    const lbCnt  = document.getElementById('lb-counter');
+
+    function openLB(idx) {
+      lbIndex = ((idx % LB_PHOTOS.length) + LB_PHOTOS.length) % LB_PHOTOS.length;
+      lbImg.classList.add('fading');
+      lbImg.src = LB_PHOTOS[lbIndex];
+      lbImg.onload = () => lbImg.classList.remove('fading');
+      lbCnt.textContent = (lbIndex + 1) + ' / ' + LB_PHOTOS.length;
+      lb.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeLB() {
+      lb.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+    function navLB(dir) {
+      openLB(lbIndex + dir);
+    }
+
+    lb.addEventListener('click', e => { if (e.target === lb) closeLB(); });
+    document.addEventListener('keydown', e => {
+      if (!lb.classList.contains('open')) return;
+      if (e.key === 'Escape')       closeLB();
+      if (e.key === 'ArrowRight')   navLB(1);
+      if (e.key === 'ArrowLeft')    navLB(-1);
+    });
+
+    // Touch swipe in lightbox
+    let lbTouchX = 0;
+    lb.addEventListener('touchstart', e => { lbTouchX = e.touches[0].clientX; }, { passive:true });
+    lb.addEventListener('touchend',   e => {
+      const diff = lbTouchX - e.changedTouches[0].clientX;
+      if (Math.abs(diff) > 50) navLB(diff > 0 ? 1 : -1);
+    }, { passive:true });
+
+    // ── RSVP — RADIO PILLS ─────────────────────────────────────────
     function selectAttending(val) {
       document.getElementById('attending-val').value = val;
       const yes = document.getElementById('pill-yes');
@@ -1184,33 +1335,29 @@
       else               no.classList.add('selected-no');
     }
 
-    // ── RSVP — CUSTOM CHECKBOXES ───────────────────
+    // ── RSVP — CHECKBOXES ──────────────────────────────────────────
     function toggleCB(label) {
-      const box   = label.querySelector('.cb-box');
-      const real  = label.querySelector('input[type=checkbox]');
+      const box  = label.querySelector('.cb-box');
+      const real = label.querySelector('input[type=checkbox]');
       real.checked = !real.checked;
       box.classList.toggle('checked', real.checked);
     }
 
-    // ── RSVP — GUEST COUNT ─────────────────────────
+    // ── RSVP — GUESTS ──────────────────────────────────────────────
     function adjustGuests(delta) {
       const inp = document.getElementById('guest-count');
       inp.value = Math.max(1, Math.min(20, parseInt(inp.value) + delta));
     }
 
-    // ── RSVP — SUBMIT ──────────────────────────────
+    // ── RSVP — SUBMIT ──────────────────────────────────────────────
     function handleRSVP(e) {
       e.preventDefault();
       const form = document.getElementById('rsvp-form');
       const err  = document.getElementById('form-err');
-      const name  = form.querySelector('[name=name]').value.trim();
-      const email = form.querySelector('[name=email]').value.trim();
-      const att   = document.getElementById('attending-val').value;
-
-      if (!name || !email || !att) {
-        err.classList.remove('hidden');
-        return;
-      }
+      const name = form.querySelector('[name=name]').value.trim();
+      const email= form.querySelector('[name=email]').value.trim();
+      const att  = document.getElementById('attending-val').value;
+      if (!name || !email || !att) { err.classList.remove('hidden'); return; }
       err.classList.add('hidden');
 
       const payload = {
@@ -1222,40 +1369,34 @@
         message:  form.querySelector('[name=message]').value,
       };
 
-      // ── TO INTEGRATE WITH FORMSPREE ──────────────
-      // 1. Create a free account at formspree.io
-      // 2. Create a new form and copy your form ID
-      // 3. Uncomment and edit the fetch below:
+      // ── FORMSPREE INTEGRATION ──────────────────────────────────
+      // 1. Create free account → formspree.io
+      // 2. New form → copy form ID (looks like: xrgvjkwp)
+      // 3. Uncomment below and replace YOUR_FORM_ID:
       //
       // fetch('https://formspree.io/f/YOUR_FORM_ID', {
       //   method: 'POST',
       //   body: JSON.stringify(payload),
       //   headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' }
-      // }).then(r => r.ok ? showSuccess() : alert('Submission failed. Please try again.'));
-      //
-      // For now, log and show success:
-      console.log('RSVP:', payload);
-      showSuccess();
-    }
+      // }).then(r => r.ok ? showRSVPSuccess() : alert('Submission failed. Please try again.'));
+      // return;
 
-    function showSuccess() {
+      console.log('RSVP:', payload);
+      showRSVPSuccess();
+    }
+    function showRSVPSuccess() {
       document.getElementById('rsvp-form').style.display = 'none';
       const s = document.getElementById('rsvp-success');
       s.classList.remove('hidden');
-      s.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      s.scrollIntoView({ behavior:'smooth', block:'center' });
     }
 
-    // ── SMOOTH SCROLL ─────────────────────────────
+    // ── SMOOTH SCROLL ──────────────────────────────────────────────
     document.querySelectorAll('a[href^="#"]').forEach(a => {
       a.addEventListener('click', e => {
         e.preventDefault();
         const target = document.querySelector(a.getAttribute('href'));
-        if (target) {
-          window.scrollTo({
-            top: target.getBoundingClientRect().top + window.pageYOffset - 70,
-            behavior: 'smooth'
-          });
-        }
+        if (target) window.scrollTo({ top: target.getBoundingClientRect().top + window.pageYOffset - 64, behavior:'smooth' });
       });
     });
   </script>

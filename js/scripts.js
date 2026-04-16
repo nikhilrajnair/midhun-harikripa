@@ -200,7 +200,11 @@ const iconPlay = document.getElementById('icon-play');
 const iconPause= document.getElementById('icon-pause');
 let   playing  = false;
 
-music.volume = 0.35;
+// Sync button state with actual playback
+function syncPlayingState() {
+  playing = !music.paused;
+  setPlaying(playing);
+}
 
 function setPlaying(state) {
   playing = state;
@@ -215,18 +219,23 @@ function toggleMusic() {
     music.pause();
     setPlaying(false);
   } else {
+    music.muted = false;
     music.play().then(() => setPlaying(true)).catch(() => {});
   }
 }
 
-// Try autoplay immediately on load
-music.play().then(() => setPlaying(true)).catch(() => {});
-
-// Fallback: start on first interaction if browser blocked autoplay
-function tryAutoplay() {
-  if (!playing) {
-    music.play().then(() => setPlaying(true)).catch(() => {});
+// Unmute on first interaction if audio started muted
+function handleFirstInteraction() {
+  if (playing && music.muted) {
+    music.muted = false;
   }
 }
-document.addEventListener('click',      tryAutoplay, { once:true });
-document.addEventListener('touchstart', tryAutoplay, { once:true, passive:true });
+document.addEventListener('click', handleFirstInteraction, { once:true });
+document.addEventListener('touchstart', handleFirstInteraction, { once:true, passive:true });
+
+// Sync button state when audio actually starts/stops
+music.addEventListener('play', () => syncPlayingState());
+music.addEventListener('pause', () => syncPlayingState());
+
+// Initial state sync
+syncPlayingState();

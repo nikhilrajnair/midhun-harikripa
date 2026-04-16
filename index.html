@@ -17,9 +17,26 @@
 <body class="font-body">
 
   <!-- ── BACKGROUND MUSIC ── -->
-  <audio id="bg-music" loop preload="auto">
+  <audio id="bg-music" loop preload="auto" autoplay playsinline>
     <source src="music.mp3" type="audio/mpeg">
   </audio>
+
+  <!-- Immediate autoplay trigger -->
+  <script>
+    try {
+      const music = document.getElementById('bg-music');
+      if (music) {
+        music.volume = 0.35;
+        music.play().catch(() => {
+          // If unmuted autoplay blocked, fallback to muted
+          music.muted = true;
+          music.play().catch(() => {});
+        });
+      }
+    } catch (e) {
+      // Silently ignore if autoplay fails, scripts.js will handle it
+    }
+  </script>
 
   <!-- ── FLOATING MUSIC BUTTON ── -->
   <div id="music-btn" title="Play / Pause music"

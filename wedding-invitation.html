@@ -11,305 +11,54 @@
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,600&family=Cinzel:wght@400;500;600&family=Dancing+Script:wght@600;700&family=Lato:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
 
   <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            cream:     { DEFAULT:'#FFF8F0', dark:'#F5EAD8' },
-            peach:     { light:'#FFE5D0', DEFAULT:'#FFCBA4', dark:'#E8956D' },
-            sage:      { light:'#D4E8D4', DEFAULT:'#8FAF8F', dark:'#5C8060' },
-            gold:      { light:'#EDD98A', DEFAULT:'#C9A84C', dark:'#8B6810' },
-            warmBrown: { DEFAULT:'#3D2B1F', light:'#7D5A4A' },
-          },
-          fontFamily: {
-            display: ['Cinzel','serif'],
-            heading: ['Cormorant Garamond','serif'],
-            script:  ['Dancing Script','cursive'],
-            body:    ['Lato','sans-serif'],
-          },
-        }
-      }
-    }
-  </script>
-
-  <style>
-    html { scroll-behavior:smooth; }
-    body { background:#FFF8F0; color:#3D2B1F; overflow-x:hidden; }
-
-    /* ── Scrollbar ── */
-    ::-webkit-scrollbar { width:5px; }
-    ::-webkit-scrollbar-track { background:#FFF8F0; }
-    ::-webkit-scrollbar-thumb { background:#C9A84C; border-radius:3px; }
-
-    /* ── Gold shimmer ── */
-    .gold-shimmer {
-      background: linear-gradient(90deg,#C9A84C 0%,#F0D060 40%,#C9A84C 60%,#F0D060 100%);
-      background-size:200% auto;
-      -webkit-background-clip:text; background-clip:text;
-      -webkit-text-fill-color:transparent;
-      animation:shimmer 5s linear infinite;
-    }
-    @keyframes shimmer { from{background-position:0% center} to{background-position:200% center} }
-
-    /* ── Floating petals ── */
-    @keyframes float-down {
-      0%   { transform:translateY(-40px) rotate(0deg);   opacity:0; }
-      5%   { opacity:.85; }
-      90%  { opacity:.6; }
-      100% { transform:translateY(110vh) rotate(540deg); opacity:0; }
-    }
-    .petal { position:fixed; top:0; pointer-events:none; z-index:0; animation:float-down linear infinite; }
-
-    /* ── Scroll reveal ── */
-    .reveal { opacity:0; transform:translateY(28px); transition:opacity .75s ease,transform .75s ease; }
-    .reveal.visible { opacity:1; transform:none; }
-
-    /* ── Nav link ── */
-    .nav-link { position:relative; }
-    .nav-link::after { content:''; position:absolute; bottom:-3px; left:50%; transform:translateX(-50%); width:0; height:1px; background:#C9A84C; transition:width .3s ease; }
-    .nav-link:hover::after { width:100%; }
-
-    /* ── Gold button ── */
-    .btn-gold { background:linear-gradient(135deg,#C9A84C 0%,#D4AF37 50%,#C9A84C 100%); background-size:200% auto; color:#fff; transition:background-position .4s,transform .2s,box-shadow .2s; }
-    .btn-gold:hover { background-position:right center; transform:translateY(-2px); box-shadow:0 8px 24px rgba(201,168,76,.45); }
-
-    /* ══════════════════════════════════════════
-       HERO — SPLIT LAYOUT
-    ══════════════════════════════════════════ */
-    .hero-split {
-      display:grid;
-      grid-template-columns:44% 56%;
-      min-height:100vh;
-    }
-    @media (max-width:767px) {
-      .hero-split { grid-template-columns:1fr; grid-template-rows:58vh auto; min-height:auto; }
-    }
-
-    /* Photo column */
-    .hero-photo-col { position:relative; overflow:hidden; }
-    .hero-photo-col img {
-      width:100%; height:100%; object-fit:cover;
-      object-position:center 15%;
-      display:block;
-      animation:kenburns 22s ease-in-out infinite alternate;
-    }
-    @keyframes kenburns { from{transform:scale(1)} to{transform:scale(1.07)} }
-
-    /* Right-edge bleed into cream (desktop) */
-    .hero-photo-col::after {
-      content:''; position:absolute; inset:0;
-      background:linear-gradient(to right, transparent 60%, rgba(255,248,240,.2) 82%, rgba(255,248,240,.75) 100%);
-      pointer-events:none;
-    }
-    @media (max-width:767px) {
-      .hero-photo-col::after {
-        background:linear-gradient(to bottom, transparent 55%, rgba(255,248,240,.5) 82%, #FFF8F0 100%);
-      }
-    }
-    /* Gold seam between columns (desktop) */
-    .hero-photo-col::before {
-      content:''; position:absolute; top:0; bottom:0; right:0; width:3px; z-index:2;
-      background:linear-gradient(to bottom, transparent, #C9A84C 20%, #F0D060 50%, #C9A84C 80%, transparent);
-    }
-    @media (max-width:767px) { .hero-photo-col::before { display:none; } }
-
-    /* Kerala lamp on photo column */
-    .lamp-on-photo {
-      position:absolute; bottom:1.8rem; left:50%; transform:translateX(-50%);
-      z-index:3; opacity:.55;
-    }
-
-    /* Content column */
-    .hero-content-col {
-      background:#FFF8F0;
-      display:flex; align-items:center; justify-content:center;
-      padding:5.5rem 3rem 4rem;
-      position:relative;
-    }
-    @media (max-width:767px) { .hero-content-col { padding:2.5rem 1.5rem 5rem; } }
-
-    /* Kerala lamp flame */
-    @keyframes flicker {
-      0%,100%{transform:scaleY(1) translateX(0)}
-      25%{transform:scaleY(1.1) translateX(1px)}
-      75%{transform:scaleY(.95) translateX(-1px)}
-    }
-    .flame { animation:flicker 1.8s ease-in-out infinite; transform-origin:bottom center; }
-
-    /* Countdown */
-    @keyframes pulse-soft { 0%,100%{transform:scale(1)} 50%{transform:scale(1.04)} }
-    .cd-num { animation:pulse-soft 2s ease-in-out infinite; }
-
-    /* ══════════════════════════════════════════
-       STORY — MAGAZINE LAYOUT
-    ══════════════════════════════════════════ */
-    .story-chapter {
-      display:grid; grid-template-columns:1fr 1fr;
-      min-height:500px;
-    }
-    @media (max-width:767px) {
-      .story-chapter { grid-template-columns:1fr; min-height:auto; }
-    }
-
-    /* Reverse even chapters */
-    .story-chapter.reverse .story-photo { order:2; }
-    .story-chapter.reverse .story-text  { order:1; }
-    @media (max-width:767px) {
-      .story-chapter.reverse .story-photo { order:1; }
-      .story-chapter.reverse .story-text  { order:2; }
-    }
-
-    .story-photo {
-      position:relative; overflow:hidden;
-      min-height:340px; cursor:zoom-in;
-    }
-    .story-photo img {
-      width:100%; height:100%; object-fit:cover;
-      object-position:center 12%; display:block;
-      transition:transform .7s ease;
-    }
-    .story-photo:hover img { transform:scale(1.05); }
-
-    /* Inner gold frame on hover */
-    .story-photo .inner-frame {
-      position:absolute; inset:14px; z-index:1;
-      border:1px solid rgba(201,168,76,0);
-      transition:border-color .4s; pointer-events:none;
-    }
-    .story-photo:hover .inner-frame { border-color:rgba(201,168,76,.55); }
-
-    /* Chapter label gradient at bottom of photo */
-    .story-photo .photo-caption {
-      position:absolute; bottom:0; left:0; right:0;
-      padding:.75rem 1.2rem; z-index:2;
-      background:linear-gradient(transparent, rgba(20,14,10,.5));
-    }
-
-    .story-text {
-      display:flex; align-items:center;
-      padding:3.5rem; background:#FFF8F0;
-      position:relative; overflow:hidden;
-    }
-    .story-chapter.reverse .story-text { background:#F0FFF0; }
-    @media (max-width:767px) { .story-text { padding:2rem 1.5rem; } }
-
-    /* Big watermark number */
-    .ch-watermark {
-      position:absolute; top:-1rem; right:1rem;
-      font-family:'Cinzel',serif; font-size:5.5rem;
-      color:rgba(201,168,76,.07); line-height:1;
-      pointer-events:none; user-select:none;
-    }
-
-    /* ══════════════════════════════════════════
-       GALLERY
-    ══════════════════════════════════════════ */
-    .gallery-grid {
-      display:grid;
-      grid-template-columns:repeat(3,1fr);
-      gap:8px;
-    }
-    @media (max-width:767px) { .gallery-grid { grid-template-columns:repeat(2,1fr); gap:5px; } }
-
-    .gal-item {
-      position:relative; overflow:hidden;
-      aspect-ratio:3/4; cursor:zoom-in;
-    }
-    /* First and 4th items span 2 rows on desktop for a masonry feel */
-    .gal-item:nth-child(1),
-    .gal-item:nth-child(4) { aspect-ratio:auto; grid-row:span 2; }
-    @media (max-width:767px) {
-      .gal-item:nth-child(1),
-      .gal-item:nth-child(4) { aspect-ratio:3/4; grid-row:auto; }
-    }
-
-    .gal-item img {
-      width:100%; height:100%; object-fit:cover;
-      object-position:center 12%; display:block;
-      transition:transform .45s ease;
-    }
-    .gal-item:hover img { transform:scale(1.07); }
-
-    .gal-overlay {
-      position:absolute; inset:0;
-      background:linear-gradient(135deg, rgba(201,168,76,0), rgba(201,168,76,.3));
-      opacity:0; transition:opacity .3s;
-      display:flex; align-items:center; justify-content:center;
-    }
-    .gal-item:hover .gal-overlay { opacity:1; }
-
-    /* ══════════════════════════════════════════
-       LIGHTBOX
-    ══════════════════════════════════════════ */
-    #lightbox {
-      position:fixed; inset:0;
-      background:rgba(18,12,8,.93);
-      z-index:9999;
-      display:flex; align-items:center; justify-content:center;
-      opacity:0; pointer-events:none;
-      transition:opacity .3s;
-    }
-    #lightbox.open { opacity:1; pointer-events:all; }
-
-    #lb-img {
-      max-width:min(88vw,680px); max-height:88vh;
-      object-fit:contain; display:block;
-      border:1.5px solid rgba(201,168,76,.35);
-      box-shadow:0 24px 64px rgba(0,0,0,.55);
-      transition:opacity .2s;
-    }
-    #lb-img.fading { opacity:0; }
-
-    #lb-close {
-      position:absolute; top:1.2rem; right:1.2rem;
-      width:44px; height:44px; border-radius:50%;
-      display:flex; align-items:center; justify-content:center;
-      cursor:pointer; color:rgba(255,255,255,.6);
-      font-size:1.5rem; transition:color .2s,background .2s;
-    }
-    #lb-close:hover { color:#C9A84C; background:rgba(255,255,255,.06); }
-
-    #lb-prev, #lb-next {
-      position:absolute; top:50%; transform:translateY(-50%);
-      width:52px; height:52px; border-radius:50%;
-      display:flex; align-items:center; justify-content:center;
-      cursor:pointer; color:rgba(255,255,255,.55);
-      transition:color .2s,background .2s;
-    }
-    #lb-prev { left:1.2rem; } #lb-next { right:1.2rem; }
-    #lb-prev:hover, #lb-next:hover { color:#C9A84C; background:rgba(255,255,255,.06); }
-
-    #lb-counter {
-      position:absolute; bottom:1.4rem; left:50%; transform:translateX(-50%);
-      font-family:'Lato',sans-serif; font-size:.7rem;
-      letter-spacing:.18em; color:rgba(255,255,255,.35);
-    }
-
-    /* ══════════════════════════════════════════
-       EVENT CARDS
-    ══════════════════════════════════════════ */
-    .event-card { transition:transform .3s,box-shadow .3s; }
-    .event-card:hover { transform:translateY(-5px); box-shadow:0 18px 40px rgba(201,168,76,.18); }
-
-    /* Choice pills */
-    .choice-pill { border:1.5px solid rgba(201,168,76,.45); transition:background .25s,color .25s,border-color .25s,transform .2s; cursor:pointer; }
-    .choice-pill.selected-yes { background:#C9A84C; color:#fff; border-color:#C9A84C; }
-    .choice-pill.selected-no  { background:#8FAF8F; color:#fff; border-color:#8FAF8F; }
-    .choice-pill:hover { transform:scale(1.02); }
-
-    /* Custom checkbox */
-    .cb-box { width:20px; height:20px; border:1.5px solid #C9A84C; display:flex; align-items:center; justify-content:center; flex-shrink:0; transition:background .2s; cursor:pointer; }
-    .cb-box.checked { background:rgba(201,168,76,.15); }
-    .cb-box .cb-tick { opacity:0; transition:opacity .2s; }
-    .cb-box.checked .cb-tick { opacity:1; }
-
-    /* Form inputs */
-    .f-input { background:#FFF8F0; border:1.5px solid rgba(201,168,76,.35); padding:.75rem 1rem; width:100%; font-family:'Cormorant Garamond',serif; font-size:1rem; color:#3D2B1F; transition:border-color .25s,box-shadow .25s; outline:none; }
-    .f-input:focus { border-color:#C9A84C; box-shadow:0 0 0 3px rgba(201,168,76,.14); }
-  </style>
+  <script src="js/tailwind-config.js"></script>
+  <link rel="stylesheet" href="css/styles.css">
 </head>
 <body class="font-body">
+
+  <!-- ── BACKGROUND MUSIC ── -->
+  <audio id="bg-music" loop preload="auto">
+    <source src="music.mp3" type="audio/mpeg">
+  </audio>
+
+  <!-- ── FLOATING MUSIC BUTTON ── -->
+  <div id="music-btn" title="Play / Pause music"
+       onclick="toggleMusic()"
+       style="
+         position:fixed; bottom:28px; right:28px; z-index:9999;
+         width:54px; height:54px; border-radius:50%; cursor:pointer;
+         background:linear-gradient(135deg,#C9A84C,#F0D060,#C9A84C);
+         background-size:200% auto;
+         box-shadow:0 4px 20px rgba(201,168,76,.45);
+         display:flex; align-items:center; justify-content:center;
+         transition:transform .2s, box-shadow .2s;
+       "
+       onmouseenter="this.style.transform='scale(1.1)';this.style.boxShadow='0 6px 28px rgba(201,168,76,.6)'"
+       onmouseleave="this.style.transform='scale(1)';this.style.boxShadow='0 4px 20px rgba(201,168,76,.45)'">
+    <!-- Pulse ring (visible when playing) -->
+    <div id="music-pulse"
+         style="
+           position:absolute; inset:-6px; border-radius:50%;
+           border:2px solid rgba(201,168,76,.5);
+           opacity:0; animation:none;
+         "></div>
+    <!-- Play icon -->
+    <svg id="icon-play" width="22" height="22" viewBox="0 0 24 24" fill="white">
+      <path d="M8 5.14v14l11-7-11-7z"/>
+    </svg>
+    <!-- Pause icon (hidden by default) -->
+    <svg id="icon-pause" width="22" height="22" viewBox="0 0 24 24" fill="white" style="display:none">
+      <rect x="6" y="4" width="4" height="16" rx="1"/>
+      <rect x="14" y="4" width="4" height="16" rx="1"/>
+    </svg>
+    <!-- Music note label -->
+    <span style="
+      position:absolute; top:-22px; left:50%; transform:translateX(-50%);
+      font-family:'Cormorant Garamond',serif; font-style:italic;
+      font-size:10px; color:#C9A84C; white-space:nowrap;
+      opacity:0; transition:opacity .3s; pointer-events:none;
+    " id="music-label">Kerala Sangeetham</span>
+  </div>
 
   <!-- ── LIGHTBOX ── -->
   <div id="lightbox">
@@ -349,9 +98,6 @@
 
   <!-- ══════════════════════════════════════════
        HERO — SPLIT LAYOUT
-       ★ PHOTO SETUP:
-         Place photos/ folder next to this HTML file.
-         photos/hero.jpg     → recommended: photo 5 (misty morning walk) or photo 3 (boat)
   ══════════════════════════════════════════ -->
   <section id="hero" class="hero-split relative">
 
@@ -361,11 +107,6 @@
 
     <!-- ─ LEFT: PHOTO COLUMN ─ -->
     <div class="hero-photo-col">
-      <!--
-        ★ REPLACE src: photos/hero.jpg
-           Recommended photo: the misty morning walk (both facing camera)
-           object-position "center 15%" keeps faces near top — adjust if needed
-      -->
       <img src="photo/IMG_3645.JPG"
            alt="Hari Kripa and Midhun Raj"
            loading="eager"
@@ -534,10 +275,6 @@
 
   <!-- ══════════════════════════════════════════
        OUR STORY — MAGAZINE LAYOUT
-       ★ PHOTO SETUP:
-         photos/story-1.jpg → Photo 1: hand-in-hand walk on path
-         photos/story-2.jpg → Photo 3: boat on backwaters
-         photos/story-3.jpg → Photo 2: embrace in the fields
   ══════════════════════════════════════════ -->
   <section id="story" style="background:#D4E8D4">
 
@@ -559,9 +296,6 @@
     <!-- Chapter 1 — photo LEFT, text RIGHT -->
     <div class="story-chapter reveal" onclick="">
       <div class="story-photo" onclick="openLB(0)">
-        <!--
-          ★ photos/story-1.jpg = walking hand-in-hand on the path
-        -->
         <img src="photo/IMG_3631.JPG" alt="How We Met" loading="lazy"
              onerror="this.parentElement.style.background='linear-gradient(135deg,#D4E8D4,#A8C5A0)';this.style.display='none'">
         <div class="inner-frame"></div>
@@ -584,11 +318,11 @@
               style="font-size:clamp(1.8rem,3vw,2.6rem)">How We Met</h3>
           <div class="h-px w-16 mb-4" style="background:linear-gradient(90deg,#C9A84C,transparent)"></div>
           <p class="font-body text-sm leading-relaxed mb-5" style="color:#7D5A4A">
-            On a rain-soaked June evening in Thrissur, two souls found each other at a mutual friend's gathering.
+            On a rain-soaked June evening in Kasaragod, two souls found each other at a mutual friend's gathering.
             Conversation flowed like the monsoon itself — easy, warm, and seemingly endless. Neither knew that
             crossing paths that night would set the course of forever.
           </p>
-          <p class="font-heading text-gold italic text-sm">— June 2022, Thrissur</p>
+          <p class="font-heading text-gold italic text-sm">— June 2024, Kasaragod</p>
         </div>
       </div>
     </div>
@@ -596,9 +330,6 @@
     <!-- Chapter 2 — text LEFT (reversed), photo RIGHT -->
     <div class="story-chapter reverse reveal">
       <div class="story-photo" onclick="openLB(1)">
-        <!--
-          ★ photos/story-2.jpg = boat on backwaters with decorated umbrella
-        -->
         <img src="photo/IMG_3644.JPG" alt="First Date" loading="lazy"
              onerror="this.parentElement.style.background='linear-gradient(135deg,#FFCBA4,#D4E8D4)';this.style.display='none'">
         <div class="inner-frame"></div>
@@ -626,9 +357,6 @@
     <!-- Chapter 3 — photo LEFT, text RIGHT -->
     <div class="story-chapter reveal">
       <div class="story-photo" onclick="openLB(2)">
-        <!--
-          ★ photos/story-3.jpg = embrace in the fields
-        -->
         <img src="photo/IMG_3642.JPG" alt="The Proposal" loading="lazy"
              onerror="this.parentElement.style.background='linear-gradient(135deg,#A8C5A0,#FFCBA4)';this.style.display='none'">
         <div class="inner-frame"></div>
@@ -648,7 +376,7 @@
             temple, Midhun Raj got down on one knee. With a heart full to overflowing, he asked the question.
             Hari Kripa said yes — and the entire world felt it.
           </p>
-          <p class="font-heading text-gold italic text-sm">— January 2025, Thrissur</p>
+          <p class="font-heading text-gold italic text-sm">— January 2025, Kasaragod</p>
         </div>
       </div>
     </div>
@@ -665,16 +393,6 @@
 
   <!-- ══════════════════════════════════════════
        PHOTO GALLERY
-       ★ PHOTO SETUP:
-         photos/gallery-1.jpg  → photo 4 (standing by canal) — spans 2 rows
-         photos/gallery-2.jpg  → your extra photo 2
-         photos/gallery-3.jpg  → your extra photo 3
-         photos/gallery-4.jpg  → your extra photo 4 — spans 2 rows
-         photos/gallery-5.jpg  → your extra photo 5
-         photos/gallery-6.jpg  → your extra photo 6
-
-       Add more .gal-item blocks to extend the grid as needed.
-       The gallery lightbox is shared with story photos (index 0-2 = story, 3+ = gallery).
   ══════════════════════════════════════════ -->
   <section id="gallery" class="py-20 px-4 md:px-8" style="background:#FFF8F0">
     <div class="max-w-6xl mx-auto">
@@ -995,9 +713,6 @@
             <p class="font-heading text-warmBrown text-xl italic">Kundamkuzhi Temple</p>
             <p class="font-body text-sm" style="color:#7D5A4A">Kundamkuzhy Sri Panchalingeshwara Temple</p>
           </div>
-          <!--
-            ★ Replace href with the actual Google Maps share link for your venue
-          -->
           <a href="https://maps.google.com/?q=Kundamkuzhy+Sri+Panchalingeshwara+Temple"
              target="_blank" rel="noopener noreferrer"
              class="flex items-center gap-2 px-5 py-2 rounded-full text-xs font-body tracking-widest uppercase border border-warmBrown text-warmBrown hover:bg-warmBrown hover:text-white transition-all duration-300 whitespace-nowrap">
@@ -1008,10 +723,6 @@
             Open in Maps
           </a>
         </div>
-        <!--
-          ★ REPLACE iframe src with your venue's Google Maps embed:
-            1. maps.google.com → search venue → Share → Embed a map → copy src value
-        -->
         <div class="rounded-b-xl overflow-hidden shadow-xl" style="height:420px;border:2px solid #FFCBA4;border-top:none">
           <iframe
             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d243143.84890867592!2d74.84818390902072!3d12.483276977675796!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba486166a1e259d%3A0x2de9be76ae61c335!2sKundamkuzhy%20Sri%20Panchalingeshwara%20Temple!5e1!3m2!1sen!2sin!4v1776356217320!5m2!1sen!2sin"
@@ -1161,244 +872,101 @@
   <!-- ══════════════════════════════════════════
        FOOTER
   ══════════════════════════════════════════ -->
-  <footer class="py-14 px-6 text-center relative overflow-hidden" style="background:#3D2B1F">
-    <div class="absolute top-0 inset-x-0 h-[3px]"
-         style="background:linear-gradient(90deg,transparent,#C9A84C,#F0D060,#C9A84C,transparent)"></div>
-    <div class="absolute -right-8 bottom-0 opacity-[.06] pointer-events-none w-44">
+  <footer class="relative overflow-hidden" style="background:linear-gradient(160deg,#D6EDD8 0%,#EAF4EA 40%,#FFF0E6 100%)">
+
+    <!-- Gold top border -->
+    <div class="absolute top-0 inset-x-0 h-[2px]"
+         style="background:linear-gradient(90deg,transparent 0%,#C9A84C 25%,#F0D060 50%,#C9A84C 75%,transparent 100%)"></div>
+
+    <!-- Subtle palm watermarks -->
+    <div class="absolute left-0 bottom-0 opacity-[.08] pointer-events-none" style="width:220px">
       <svg viewBox="0 0 180 480" fill="none">
-        <path d="M90 480 C87 440 84 390 90 330 C96 270 92 210 88 155 C84 105 88 65 90 30" stroke="#C9A84C" stroke-width="14" stroke-linecap="round"/>
-        <path d="M90 50 C65 35 25 28 2 12 C42 28 78 44 90 50Z" fill="#C9A84C"/>
-        <path d="M90 50 C115 30 155 18 178 2 C140 22 108 40 90 50Z" fill="#C9A84C"/>
-        <path d="M90 50 C80 22 88 5 98 -5 C96 18 92 36 90 50Z" fill="#C9A84C"/>
+        <path d="M90 480 C87 440 84 390 90 330 C96 270 92 210 88 155 C84 105 88 65 90 30" stroke="#5C8060" stroke-width="14" stroke-linecap="round"/>
+        <path d="M90 50 C65 35 25 28 2 12 C42 28 78 44 90 50Z" fill="#5C8060"/>
+        <path d="M90 50 C115 30 155 18 178 2 C140 22 108 40 90 50Z" fill="#5C8060"/>
+        <path d="M90 50 C80 22 88 5 98 -5 C96 18 92 36 90 50Z" fill="#5C8060"/>
       </svg>
     </div>
-    <div class="flex items-center justify-center gap-4 mb-6">
-      <div class="h-px flex-1 max-w-28" style="background:linear-gradient(90deg,transparent,rgba(201,168,76,.4))"></div>
-      <svg width="36" height="30" viewBox="0 0 38 30" fill="none">
-        <path d="M19 29C19 29 8 21 8 13C8 6.4 12.5 2 19 2C25.5 2 30 6.4 30 13C30 21 19 29 19 29Z" fill="#C9A84C" opacity=".35"/>
-        <path d="M19 29C15 24 4 22 2 14C0 8 4.5 2 11 4C14.5 5.5 17 11 19 15C21 11 23.5 5.5 27 4C33.5 2 38 8 36 14C34 22 23 24 19 29Z" fill="#C9A84C" opacity=".25"/>
-        <circle cx="19" cy="14" r="3.5" fill="#C9A84C" opacity=".6"/>
+    <div class="absolute right-0 bottom-0 opacity-[.08] pointer-events-none" style="width:220px;transform:scaleX(-1)">
+      <svg viewBox="0 0 180 480" fill="none">
+        <path d="M90 480 C87 440 84 390 90 330 C96 270 92 210 88 155 C84 105 88 65 90 30" stroke="#5C8060" stroke-width="14" stroke-linecap="round"/>
+        <path d="M90 50 C65 35 25 28 2 12 C42 28 78 44 90 50Z" fill="#5C8060"/>
+        <path d="M90 50 C115 30 155 18 178 2 C140 22 108 40 90 50Z" fill="#5C8060"/>
+        <path d="M90 50 C80 22 88 5 98 -5 C96 18 92 36 90 50Z" fill="#5C8060"/>
       </svg>
-      <div class="h-px flex-1 max-w-28" style="background:linear-gradient(90deg,rgba(201,168,76,.4),transparent)"></div>
     </div>
-    <h2 class="font-heading italic mb-2 gold-shimmer" style="font-size:clamp(2.2rem,6vw,4rem)">
-      Hari Kripa &amp; Midhun Raj
-    </h2>
-    <p class="font-body text-sm tracking-widest mb-5" style="color:#FFCBA4">
-      April 20, 2026 &middot; Kundamkuzhi Temple
-    </p>
-    <p class="font-heading italic text-base md:text-lg mb-2" style="color:rgba(240,208,96,.65)">
-      "Two souls, one heart — forever bound by love and Kerala's grace"
-    </p>
-    <div class="flex items-center justify-center gap-3 mt-6 mb-5">
-      <div class="h-px flex-1 max-w-20" style="background:rgba(201,168,76,.2)"></div>
-      <svg width="16" height="14" viewBox="0 0 16 14" fill="none">
-        <path d="M8 13C8 13 1 8.5 1 4.5C1 2.3 2.7 1 4.5 1C6 1 7 2 8 3.5C9 2 10 1 11.5 1C13.3 1 15 2.3 15 4.5C15 8.5 8 13 8 13Z" fill="#C9A84C" opacity=".55"/>
-      </svg>
-      <div class="h-px flex-1 max-w-20" style="background:rgba(201,168,76,.2)"></div>
+
+    <!-- Main content -->
+    <div class="relative z-10 max-w-2xl mx-auto px-6 pt-16 pb-10 text-center">
+
+      <!-- Kerala lamp icon -->
+      <div class="flex justify-center mb-6">
+        <svg width="48" height="64" viewBox="0 0 48 64" fill="none" opacity=".85">
+          <ellipse cx="24" cy="42" rx="14" ry="5" fill="#C9A84C" opacity=".3"/>
+          <path d="M16 42 C16 42 14 30 18 22 C20 18 24 16 24 16 C24 16 28 18 30 22 C34 30 32 42 32 42Z" fill="#C9A84C" opacity=".5"/>
+          <path d="M20 42 C20 42 18 34 20 28 C21 24 24 22 24 22 C24 22 27 24 28 28 C30 34 28 42 28 42Z" fill="#C9A84C" opacity=".8"/>
+          <path d="M24 16 C24 16 22 10 24 6 C26 10 24 16 24 16Z" fill="#E8953D" opacity=".9"/>
+          <ellipse cx="24" cy="6" rx="2" ry="3" fill="#E8953D"/>
+          <path d="M14 42 Q24 44 34 42 Q32 52 24 54 Q16 52 14 42Z" fill="#C9A84C" opacity=".6"/>
+          <path d="M18 54 L16 62 M24 55 L24 62 M30 54 L32 62" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round" opacity=".5"/>
+        </svg>
+      </div>
+
+      <!-- Names -->
+      <h2 class="font-heading italic gold-shimmer leading-tight mb-1" style="font-size:clamp(2.4rem,7vw,4.2rem)">
+        Hari Kripa
+      </h2>
+      <p class="font-body tracking-[.35em] uppercase text-xs mb-1" style="color:#8FAF8F">&amp; forever</p>
+      <h2 class="font-heading italic gold-shimmer leading-tight mb-6" style="font-size:clamp(2.4rem,7vw,4.2rem)">
+        Midhun Raj
+      </h2>
+
+      <!-- Divider -->
+      <div class="flex items-center justify-center gap-3 mb-6">
+        <div class="h-px flex-1" style="background:linear-gradient(90deg,transparent,rgba(92,128,96,.4))"></div>
+        <svg width="10" height="10" viewBox="0 0 10 10"><circle cx="5" cy="5" r="2" fill="#C9A84C" opacity=".7"/></svg>
+        <svg width="6" height="6" viewBox="0 0 6 6"><circle cx="3" cy="3" r="1.5" fill="#8FAF8F" opacity=".6"/></svg>
+        <svg width="10" height="10" viewBox="0 0 10 10"><circle cx="5" cy="5" r="2" fill="#C9A84C" opacity=".7"/></svg>
+        <div class="h-px flex-1" style="background:linear-gradient(90deg,rgba(92,128,96,.4),transparent)"></div>
+      </div>
+
+      <!-- Wedding details pills -->
+      <div class="flex flex-wrap items-center justify-center gap-3 mb-8">
+        <div class="flex items-center gap-2 px-4 py-2 rounded-full" style="background:rgba(255,255,255,.55);border:1px solid rgba(92,128,96,.25);backdrop-filter:blur(4px)">
+          <svg width="13" height="13" viewBox="0 0 14 14" fill="none"><rect x="1" y="2" width="12" height="11" rx="1" stroke="#5C8060" stroke-width="1.2"/><path d="M4 1V3M10 1V3M1 6H13" stroke="#5C8060" stroke-width="1.2" stroke-linecap="round"/></svg>
+          <span class="font-body text-xs tracking-widest" style="color:#3D2B1F">Monday, 20 April 2026</span>
+        </div>
+        <div class="flex items-center gap-2 px-4 py-2 rounded-full" style="background:rgba(255,255,255,.55);border:1px solid rgba(92,128,96,.25);backdrop-filter:blur(4px)">
+          <svg width="13" height="13" viewBox="0 0 14 14" fill="none"><path d="M7 1C4.24 1 2 3.24 2 6C2 9.5 7 13 7 13C7 13 12 9.5 12 6C12 3.24 9.76 1 7 1Z" stroke="#5C8060" stroke-width="1.2"/><circle cx="7" cy="6" r="1.5" fill="#5C8060"/></svg>
+          <span class="font-body text-xs tracking-widest" style="color:#3D2B1F">Kundamkuzhi Temple</span>
+        </div>
+        <div class="flex items-center gap-2 px-4 py-2 rounded-full" style="background:rgba(255,255,255,.55);border:1px solid rgba(92,128,96,.25);backdrop-filter:blur(4px)">
+          <svg width="13" height="13" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="6" stroke="#5C8060" stroke-width="1.2"/><path d="M7 4V7L9.5 9.5" stroke="#5C8060" stroke-width="1.2" stroke-linecap="round"/></svg>
+          <span class="font-body text-xs tracking-widest" style="color:#3D2B1F">11:00 AM</span>
+        </div>
+      </div>
+
+      <!-- Quote -->
+      <p class="font-heading italic mb-8" style="font-size:clamp(1rem,2.5vw,1.2rem);color:#5C8060;line-height:1.7">
+        "Two souls, one heart —<br>forever bound by love and Kerala's grace"
+      </p>
+
+      <!-- With love sign-off -->
+      <div class="flex items-center justify-center gap-3 mb-8">
+        <div class="h-px w-12" style="background:rgba(92,128,96,.3)"></div>
+        <p class="font-heading italic" style="color:#7D5A4A;font-size:1rem">With love, Hari Kripa &amp; Midhun Raj</p>
+        <div class="h-px w-12" style="background:rgba(92,128,96,.3)"></div>
+      </div>
+
     </div>
-    <p class="font-body text-[10px] tracking-widest" style="color:rgba(255,255,255,.2)">
-      Crafted with love for our special day
-    </p>
+
+    <!-- Bottom strip -->
+    <div class="relative z-10 border-t text-center py-4" style="border-color:rgba(92,128,96,.2)">
+      <p class="font-body text-[10px] tracking-[.2em] uppercase" style="color:rgba(92,128,96,.45)">Crafted with love for our special day</p>
+    </div>
+
   </footer>
 
-  <!-- ══════════════════════════════════════════
-       JAVASCRIPT
-  ══════════════════════════════════════════ -->
-  <script>
-    // ── COUNTDOWN ──────────────────────────────────────────────────
-    // ★ Change this date/time to your actual wedding muhurtham
-    const WEDDING_DATE = new Date(2026, 3, 20, 11, 0, 0);
-    function tick() {
-      const diff = WEDDING_DATE - new Date();
-      if (diff <= 0) {
-        ['cd-d','cd-h','cd-m','cd-s'].forEach(id => document.getElementById(id).textContent = '00');
-        return;
-      }
-      const pad = n => String(n).padStart(2,'0');
-      document.getElementById('cd-d').textContent = pad(Math.floor(diff / 86400000));
-      document.getElementById('cd-h').textContent = pad(Math.floor((diff % 86400000) / 3600000));
-      document.getElementById('cd-m').textContent = pad(Math.floor((diff % 3600000) / 60000));
-      document.getElementById('cd-s').textContent = pad(Math.floor((diff % 60000) / 1000));
-    }
-    tick(); setInterval(tick, 1000);
-
-    // ── NAVBAR ─────────────────────────────────────────────────────
-    const navbar  = document.getElementById('navbar');
-    const navLogo = document.getElementById('nav-logo');
-    window.addEventListener('scroll', () => {
-      const scrolled = window.scrollY > 60;
-      navbar.style.background    = scrolled ? 'rgba(255,248,240,.95)' : 'transparent';
-      navbar.style.backdropFilter= scrolled ? 'blur(14px)' : 'none';
-      navbar.style.boxShadow     = scrolled ? '0 2px 20px rgba(201,168,76,.1)' : 'none';
-      navbar.style.paddingTop    = scrolled ? '.6rem' : '1rem';
-      navbar.style.paddingBottom = scrolled ? '.6rem' : '1rem';
-      navLogo.style.opacity      = scrolled ? '1' : '0';
-    }, { passive:true });
-
-    // ── SCROLL REVEAL ──────────────────────────────────────────────
-    const revealObs = new IntersectionObserver((entries) => {
-      entries.forEach((entry, i) => {
-        if (entry.isIntersecting) {
-          setTimeout(() => entry.target.classList.add('visible'), i * 80);
-          revealObs.unobserve(entry.target);
-        }
-      });
-    }, { threshold:0.08 });
-    document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
-
-    // ── FLOATING PETALS ────────────────────────────────────────────
-    const PETALS = [
-      `<svg width="14" height="18" viewBox="0 0 14 18" fill="none"><path d="M7 18C7 18 0 12 0 7C0 3.1 3.1 0 7 0C10.9 0 14 3.1 14 7C14 12 7 18 7 18Z" fill="#FFCBA4" opacity=".65"/></svg>`,
-      `<svg width="11" height="11" viewBox="0 0 11 11" fill="none"><path d="M5.5 11C5.5 11 0 8 0 4.5C0 2 2 0 4.5 0C4.5 0 4.5 2.5 5.5 5.5C6.5 2.5 6.5 0 6.5 0C9 0 11 2 11 4.5C11 8 5.5 11 5.5 11Z" fill="#D4E8D4" opacity=".7"/></svg>`,
-      `<svg width="9" height="9" viewBox="0 0 9 9" fill="none"><path d="M4.5 0L5.8 3.7L9 4.5L5.8 5.3L4.5 9L3.2 5.3L0 4.5L3.2 3.7Z" fill="#C9A84C" opacity=".4"/></svg>`,
-      `<svg width="10" height="13" viewBox="0 0 10 13" fill="none"><path d="M5 13C5 13 0 9 0 5C0 2.2 2.2 0 5 0C7.8 0 10 2.2 10 5C10 9 5 13 5 13Z" fill="#E8956D" opacity=".5"/></svg>`,
-    ];
-    const petalWrap = document.getElementById('petal-wrap');
-    function spawnPetal() {
-      const el = document.createElement('div');
-      el.classList.add('petal');
-      el.innerHTML = PETALS[Math.floor(Math.random() * PETALS.length)];
-      const dur = 9 + Math.random() * 14;
-      el.style.left = (Math.random() * 100) + 'vw';
-      el.style.animationDuration = dur + 's';
-      el.style.animationDelay = (Math.random() * 6) + 's';
-      petalWrap.appendChild(el);
-      setTimeout(() => el.remove(), (dur + 6) * 1000);
-    }
-    for (let i = 0; i < 6; i++) spawnPetal();
-    setInterval(spawnPetal, 2400);
-
-    // ── LIGHTBOX ───────────────────────────────────────────────────
-    // All photos available in lightbox:
-    // index 0-2 = story photos, 3+ = gallery photos
-    const LB_PHOTOS = [
-      'photo/IMG_3631.JPG',
-      'photo/IMG_3644.JPG',
-      'photo/IMG_3642.JPG',
-      'photo/IMG_3645.JPG',
-      'photo/IMG_3640.JPG',
-      'photo/IMG_3633.JPG',
-      'photo/IMG_3624.JPG',
-      'photo/IMG_3626.JPG',
-      'photo/IMG_3636.JPG',
-      'photo/IMG_3637.JPG',
-      'photo/IMG_3641.JPG',
-      'photo/IMG_3643.JPG',
-    ];
-    let lbIndex = 0;
-    const lb     = document.getElementById('lightbox');
-    const lbImg  = document.getElementById('lb-img');
-    const lbCnt  = document.getElementById('lb-counter');
-
-    function openLB(idx) {
-      lbIndex = ((idx % LB_PHOTOS.length) + LB_PHOTOS.length) % LB_PHOTOS.length;
-      lbImg.classList.add('fading');
-      lbImg.src = LB_PHOTOS[lbIndex];
-      lbImg.onload = () => lbImg.classList.remove('fading');
-      lbCnt.textContent = (lbIndex + 1) + ' / ' + LB_PHOTOS.length;
-      lb.classList.add('open');
-      document.body.style.overflow = 'hidden';
-    }
-    function closeLB() {
-      lb.classList.remove('open');
-      document.body.style.overflow = '';
-    }
-    function navLB(dir) {
-      openLB(lbIndex + dir);
-    }
-
-    lb.addEventListener('click', e => { if (e.target === lb) closeLB(); });
-    document.addEventListener('keydown', e => {
-      if (!lb.classList.contains('open')) return;
-      if (e.key === 'Escape')       closeLB();
-      if (e.key === 'ArrowRight')   navLB(1);
-      if (e.key === 'ArrowLeft')    navLB(-1);
-    });
-
-    // Touch swipe in lightbox
-    let lbTouchX = 0;
-    lb.addEventListener('touchstart', e => { lbTouchX = e.touches[0].clientX; }, { passive:true });
-    lb.addEventListener('touchend',   e => {
-      const diff = lbTouchX - e.changedTouches[0].clientX;
-      if (Math.abs(diff) > 50) navLB(diff > 0 ? 1 : -1);
-    }, { passive:true });
-
-    // ── RSVP — RADIO PILLS ─────────────────────────────────────────
-    function selectAttending(val) {
-      document.getElementById('attending-val').value = val;
-      const yes = document.getElementById('pill-yes');
-      const no  = document.getElementById('pill-no');
-      yes.classList.remove('selected-yes','selected-no');
-      no.classList.remove('selected-yes','selected-no');
-      if (val === 'yes') yes.classList.add('selected-yes');
-      else               no.classList.add('selected-no');
-    }
-
-    // ── RSVP — CHECKBOXES ──────────────────────────────────────────
-    function toggleCB(label) {
-      const box  = label.querySelector('.cb-box');
-      const real = label.querySelector('input[type=checkbox]');
-      real.checked = !real.checked;
-      box.classList.toggle('checked', real.checked);
-    }
-
-    // ── RSVP — GUESTS ──────────────────────────────────────────────
-    function adjustGuests(delta) {
-      const inp = document.getElementById('guest-count');
-      inp.value = Math.max(1, Math.min(20, parseInt(inp.value) + delta));
-    }
-
-    // ── RSVP — SUBMIT ──────────────────────────────────────────────
-    function handleRSVP(e) {
-      e.preventDefault();
-      const form = document.getElementById('rsvp-form');
-      const err  = document.getElementById('form-err');
-      const name = form.querySelector('[name=name]').value.trim();
-      const email= form.querySelector('[name=email]').value.trim();
-      const att  = document.getElementById('attending-val').value;
-      if (!name || !email || !att) { err.classList.remove('hidden'); return; }
-      err.classList.add('hidden');
-
-      const payload = {
-        name, email,
-        phone:    form.querySelector('[name=phone]').value,
-        attending: att,
-        guests:   document.getElementById('guest-count').value,
-        dietary:  form.querySelector('[name=dietary]').value,
-        message:  form.querySelector('[name=message]').value,
-      };
-
-      // ── FORMSPREE INTEGRATION ──────────────────────────────────
-      // 1. Create free account → formspree.io
-      // 2. New form → copy form ID (looks like: xrgvjkwp)
-      // 3. Uncomment below and replace YOUR_FORM_ID:
-      //
-      // fetch('https://formspree.io/f/YOUR_FORM_ID', {
-      //   method: 'POST',
-      //   body: JSON.stringify(payload),
-      //   headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' }
-      // }).then(r => r.ok ? showRSVPSuccess() : alert('Submission failed. Please try again.'));
-      // return;
-
-      console.log('RSVP:', payload);
-      showRSVPSuccess();
-    }
-    function showRSVPSuccess() {
-      document.getElementById('rsvp-form').style.display = 'none';
-      const s = document.getElementById('rsvp-success');
-      s.classList.remove('hidden');
-      s.scrollIntoView({ behavior:'smooth', block:'center' });
-    }
-
-    // ── SMOOTH SCROLL ──────────────────────────────────────────────
-    document.querySelectorAll('a[href^="#"]').forEach(a => {
-      a.addEventListener('click', e => {
-        e.preventDefault();
-        const target = document.querySelector(a.getAttribute('href'));
-        if (target) window.scrollTo({ top: target.getBoundingClientRect().top + window.pageYOffset - 64, behavior:'smooth' });
-      });
-    });
-  </script>
+  <script src="js/scripts.js"></script>
 </body>
 </html>

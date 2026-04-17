@@ -1,6 +1,6 @@
 // ── COUNTDOWN ──────────────────────────────────────────────────
 // ★ Change this date/time to your actual wedding muhurtham
-const WEDDING_DATE = new Date(2026, 3, 20, 11, 0, 0);
+const WEDDING_DATE = new Date(2026, 3, 20, 11, 20, 0);
 function tick() {
   const diff = WEDDING_DATE - new Date();
   if (diff <= 0) {

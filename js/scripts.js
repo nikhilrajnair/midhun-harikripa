@@ -85,6 +85,7 @@ const lbCnt  = document.getElementById('lb-counter');
 
 function openLB(idx) {
   lbIndex = ((idx % LB_PHOTOS.length) + LB_PHOTOS.length) % LB_PHOTOS.length;
+  mixpanel.track('Gallery Photo Opened', { photo_index: lbIndex });
   lbImg.classList.add('fading');
   lbImg.src = LB_PHOTOS[lbIndex];
   lbImg.onload = () => lbImg.classList.remove('fading');
@@ -116,78 +117,13 @@ lb.addEventListener('touchend',   e => {
   if (Math.abs(diff) > 50) navLB(diff > 0 ? 1 : -1);
 }, { passive:true });
 
-// ── RSVP — RADIO PILLS ─────────────────────────────────────────
-function selectAttending(val) {
-  document.getElementById('attending-val').value = val;
-  const yes = document.getElementById('pill-yes');
-  const no  = document.getElementById('pill-no');
-  yes.classList.remove('selected-yes','selected-no');
-  no.classList.remove('selected-yes','selected-no');
-  if (val === 'yes') yes.classList.add('selected-yes');
-  else               no.classList.add('selected-no');
-}
-
-// ── RSVP — CHECKBOXES ──────────────────────────────────────────
-function toggleCB(label) {
-  const box  = label.querySelector('.cb-box');
-  const real = label.querySelector('input[type=checkbox]');
-  real.checked = !real.checked;
-  box.classList.toggle('checked', real.checked);
-}
-
-// ── RSVP — GUESTS ──────────────────────────────────────────────
-function adjustGuests(delta) {
-  const inp = document.getElementById('guest-count');
-  inp.value = Math.max(1, Math.min(20, parseInt(inp.value) + delta));
-}
-
-// ── RSVP — SUBMIT ──────────────────────────────────────────────
-function handleRSVP(e) {
-  e.preventDefault();
-  const form = document.getElementById('rsvp-form');
-  const err  = document.getElementById('form-err');
-  const name = form.querySelector('[name=name]').value.trim();
-  const email= form.querySelector('[name=email]').value.trim();
-  const att  = document.getElementById('attending-val').value;
-  if (!name || !email || !att) { err.classList.remove('hidden'); return; }
-  err.classList.add('hidden');
-
-  const payload = {
-    name, email,
-    phone:    form.querySelector('[name=phone]').value,
-    attending: att,
-    guests:   document.getElementById('guest-count').value,
-    dietary:  form.querySelector('[name=dietary]').value,
-    message:  form.querySelector('[name=message]').value,
-  };
-
-  // ── FORMSPREE INTEGRATION ──────────────────────────────────
-  // 1. Create free account → formspree.io
-  // 2. New form → copy form ID (looks like: xrgvjkwp)
-  // 3. Uncomment below and replace YOUR_FORM_ID:
-  //
-  // fetch('https://formspree.io/f/YOUR_FORM_ID', {
-  //   method: 'POST',
-  //   body: JSON.stringify(payload),
-  //   headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' }
-  // }).then(r => r.ok ? showRSVPSuccess() : alert('Submission failed. Please try again.'));
-  // return;
-
-  console.log('RSVP:', payload);
-  showRSVPSuccess();
-}
-function showRSVPSuccess() {
-  document.getElementById('rsvp-form').style.display = 'none';
-  const s = document.getElementById('rsvp-success');
-  s.classList.remove('hidden');
-  s.scrollIntoView({ behavior:'smooth', block:'center' });
-}
-
 // ── SMOOTH SCROLL ──────────────────────────────────────────────
 document.querySelectorAll('a[href^="#"]').forEach(a => {
   a.addEventListener('click', e => {
+    const href = a.getAttribute('href');
+    mixpanel.track('Navigation Clicked', { target: href });
     e.preventDefault();
-    const target = document.querySelector(a.getAttribute('href'));
+    const target = document.querySelector(href);
     if (target) window.scrollTo({ top: target.getBoundingClientRect().top + window.pageYOffset - 64, behavior:'smooth' });
   });
 });
@@ -213,8 +149,10 @@ function toggleMusic() {
   if (playing) {
     music.pause();
     setPlaying(false);
+    mixpanel.track('Music Paused');
   } else {
     music.play().then(() => setPlaying(true)).catch(() => {});
+    mixpanel.track('Music Started');
   }
 }
 
@@ -229,6 +167,7 @@ function setVolume(v) {
   const val = parseInt(v, 10);
   music.volume = val / 100;
   volLabel.textContent = val + '%';
+  mixpanel.track('Music Volume Changed', { volume_percent: val });
 }
 
 function showVolume() {
@@ -252,13 +191,39 @@ let lpTimer;
 controls.addEventListener('touchstart', () => { lpTimer = setTimeout(showVolume, 400); }, { passive:true });
 controls.addEventListener('touchend', () => { clearTimeout(lpTimer); hideVolume(); }, { passive:true });
 volPanel.addEventListener('touchstart', (e) => { e.stopPropagation(); clearTimeout(volTimeout); showVolume(); }, { passive:true });
+// -- SECTION TRACKING ----
+const sectionObs = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const sectionId = entry.target.id;
+      if (sectionId) mixpanel.track('Section Scrolled To', { section: sectionId });
+    }
+  });
+}, { threshold: 0.25 });
+
+document.querySelectorAll('section[id]').forEach(section => sectionObs.observe(section));
+
+// -- VENUE MAP TRACKING ----
+const venueLinks = document.querySelectorAll('a[href*="maps"], a[href*="google.com/maps"]');
+venueLinks.forEach(link => {
+  link.addEventListener('click', () => {
+    mixpanel.track('Venue Map Clicked', { venue: link.textContent.trim() });
+  });
+});
 
 // Try auto-playing immediately (works for file:// and localhost)
 music.volume = 0.35;
-music.play().then(() => setPlaying(true)).catch(() => {
+music.play().then(() => {
+  setPlaying(true);
+  mixpanel.track('Music Autoplay Successful');
+}).catch(() => {
   // Browser blocked autoplay — start on first user interaction instead
+  mixpanel.track('Music Autoplay Blocked');
   function startOnInteraction() {
-    music.play().then(() => setPlaying(true)).catch(() => {});
+    music.play().then(() => {
+      setPlaying(true);
+      mixpanel.track('Music Started On Interaction');
+    }).catch(() => {});
     document.removeEventListener('click',      startOnInteraction);
     document.removeEventListener('touchstart', startOnInteraction);
     document.removeEventListener('scroll',     startOnInteraction);

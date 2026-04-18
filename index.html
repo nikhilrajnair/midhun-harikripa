@@ -33,6 +33,17 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="js/tailwind-config.js"></script>
   <link rel="stylesheet" href="css/styles.css">
+
+  <script src="https://cdn.mxpnl.com/libs/mixpanel-2-latest.min.js"></script>
+  <script>
+    mixpanel.init("0228f13e6e29e842982fe07663e665ef", {
+      debug: true,
+      track_pageview: true,
+      persistence: "localStorage",
+      autocapture: true,
+      record_sessions_percent: 100
+    });
+  </script>
 </head>
 <body class="font-body">
 

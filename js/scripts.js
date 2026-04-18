@@ -1,3 +1,11 @@
+// ── MIXPANEL SAFE TRACKING ─────────────────────────────────────
+// Wrapper to safely track events only when Mixpanel is available
+function trackEvent(eventName, properties = {}) {
+  if (typeof window.mixpanel !== 'undefined') {
+    window.mixpanel.track(eventName, properties);
+  }
+}
+
 // ── COUNTDOWN ──────────────────────────────────────────────────
 // ★ Change this date/time to your actual wedding muhurtham
 const WEDDING_DATE = new Date(2026, 3, 20, 11, 20, 0);
@@ -85,7 +93,7 @@ const lbCnt  = document.getElementById('lb-counter');
 
 function openLB(idx) {
   lbIndex = ((idx % LB_PHOTOS.length) + LB_PHOTOS.length) % LB_PHOTOS.length;
-  mixpanel.track('Gallery Photo Opened', { photo_index: lbIndex });
+  trackEvent('Gallery Photo Opened', { photo_index: lbIndex });
   lbImg.classList.add('fading');
   lbImg.src = LB_PHOTOS[lbIndex];
   lbImg.onload = () => lbImg.classList.remove('fading');
@@ -121,7 +129,7 @@ lb.addEventListener('touchend',   e => {
 document.querySelectorAll('a[href^="#"]').forEach(a => {
   a.addEventListener('click', e => {
     const href = a.getAttribute('href');
-    mixpanel.track('Navigation Clicked', { target: href });
+    trackEvent('Navigation Clicked', { target: href });
     e.preventDefault();
     const target = document.querySelector(href);
     if (target) window.scrollTo({ top: target.getBoundingClientRect().top + window.pageYOffset - 64, behavior:'smooth' });
@@ -149,10 +157,10 @@ function toggleMusic() {
   if (playing) {
     music.pause();
     setPlaying(false);
-    mixpanel.track('Music Paused');
+    trackEvent('Music Paused');
   } else {
     music.play().then(() => setPlaying(true)).catch(() => {});
-    mixpanel.track('Music Started');
+    trackEvent('Music Started');
   }
 }
 
@@ -167,7 +175,7 @@ function setVolume(v) {
   const val = parseInt(v, 10);
   music.volume = val / 100;
   volLabel.textContent = val + '%';
-  mixpanel.track('Music Volume Changed', { volume_percent: val });
+  trackEvent('Music Volume Changed', { volume_percent: val });
 }
 
 function showVolume() {
@@ -196,7 +204,7 @@ const sectionObs = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
       const sectionId = entry.target.id;
-      if (sectionId) mixpanel.track('Section Scrolled To', { section: sectionId });
+      if (sectionId) trackEvent('Section Scrolled To', { section: sectionId });
     }
   });
 }, { threshold: 0.25 });
@@ -207,7 +215,7 @@ document.querySelectorAll('section[id]').forEach(section => sectionObs.observe(s
 const venueLinks = document.querySelectorAll('a[href*="maps"], a[href*="google.com/maps"]');
 venueLinks.forEach(link => {
   link.addEventListener('click', () => {
-    mixpanel.track('Venue Map Clicked', { venue: link.textContent.trim() });
+    trackEvent('Venue Map Clicked', { venue: link.textContent.trim() });
   });
 });
 
@@ -215,14 +223,14 @@ venueLinks.forEach(link => {
 music.volume = 0.35;
 music.play().then(() => {
   setPlaying(true);
-  mixpanel.track('Music Autoplay Successful');
+  trackEvent('Music Autoplay Successful');
 }).catch(() => {
   // Browser blocked autoplay — start on first user interaction instead
-  mixpanel.track('Music Autoplay Blocked');
+  trackEvent('Music Autoplay Blocked');
   function startOnInteraction() {
     music.play().then(() => {
       setPlaying(true);
-      mixpanel.track('Music Started On Interaction');
+      trackEvent('Music Started On Interaction');
     }).catch(() => {});
     document.removeEventListener('click',      startOnInteraction);
     document.removeEventListener('touchstart', startOnInteraction);

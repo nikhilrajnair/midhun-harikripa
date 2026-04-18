@@ -219,22 +219,29 @@ venueLinks.forEach(link => {
   });
 });
 
-// Try auto-playing immediately (works for file:// and localhost)
+// Start muted (browsers allow muted autoplay), unmute on first interaction
 music.volume = 0.35;
+music.muted = true;
 music.play().then(() => {
   setPlaying(true);
   trackEvent('Music Autoplay Successful');
+  // Unmute on first user interaction
+  function unmuteOnInteraction() {
+    music.muted = false;
+    trackEvent('Music Started On Interaction');
+  }
+  document.addEventListener('click',      unmuteOnInteraction, { once: true });
+  document.addEventListener('touchstart', unmuteOnInteraction, { once: true, passive: true });
+  document.addEventListener('scroll',     unmuteOnInteraction, { once: true, passive: true });
 }).catch(() => {
-  // Browser blocked autoplay — start on first user interaction instead
+  // Fallback: start with sound on first interaction
   trackEvent('Music Autoplay Blocked');
   function startOnInteraction() {
+    music.muted = false;
     music.play().then(() => {
       setPlaying(true);
       trackEvent('Music Started On Interaction');
     }).catch(() => {});
-    document.removeEventListener('click',      startOnInteraction);
-    document.removeEventListener('touchstart', startOnInteraction);
-    document.removeEventListener('scroll',     startOnInteraction);
   }
   document.addEventListener('click',      startOnInteraction, { once: true });
   document.addEventListener('touchstart', startOnInteraction, { once: true, passive: true });
